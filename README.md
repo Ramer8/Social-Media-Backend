@@ -1,4 +1,42 @@
-#### Mondo DB project
+#### Social Media Backend
+
+---
+
+Social media image by copilot image
+
+---
+
+Very thanks for interest in my fifth project with Geekshubs Academy of the Full Stack Development Bootcamp 🚀.
+
+<STACK ICONS>
+
+#### Description
+
+We must do a social media where Users can register, access the network and interact with each other.
+The users also can follow or unfollow to another users, write comentary in his profiles or post.
+
+First Structure (Routes)
+
+- Users
+- Posts
+
+  Thats tables have relation between us.
+
+#### Data Base Diagram
+
+---
+
+Atach Image
+
+---
+
+#### Develop
+
+REST API design for FRONTEND
+
+#### Endpoints
+
+###Install and Develop
 
 ```bash
 $ npm init --yes
@@ -37,18 +75,20 @@ Updated User.js
 ```
 
 ```txt
-creamos modelo
+create modelo
 ```
 
 ```txt
-creamos controlador
+create controller
 ```
 
 ```txt
-instalamos bcrypt para el encriptar el password
+install bcrypt to password encrypt
+
 ```
 
 ```bash
 $ npm i bcrypt
 
+``
 ```
