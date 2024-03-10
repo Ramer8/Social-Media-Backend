@@ -3,7 +3,7 @@ import {
   createPost,
   deletePost,
   updatePost,
-  // getPosts
+  getOwnPosts,
 } from "../controllers/post.controller.js"
 import { auth } from "../middlewares/auth.js"
 import { updateProfile } from "../controllers/user.controller.js"
@@ -18,9 +18,9 @@ router.delete("/:id", auth, deletePost)
 
 router.put("/", auth, updatePost)
 
+router.get("/own", auth, getOwnPosts)
 //router.get("/", auth, getPosts)
 // router.delete('/:id', auth, deletePostById)
-// router.get('/own', auth, getOwnPosts)
 // router.get('/:id', auth, getPostById)
 // router.get('/:userId', auth, getPostByUserId)
 
