@@ -76,3 +76,51 @@ export const deletePost = async (req, res) => {
     })
   }
 }
+export const updatePost = async (req, res) => {
+  try {
+    const { content } = req.body
+
+    //We need simple id in post content to use in route
+    //and then get this id to update.
+    // Current I delete the post content of logged user
+    // When I get this ordinary simple id number just
+    // change this line (userId: userId), to
+    // the request id number like (id : req.body.id)
+    // and put this id number on update method too.
+
+    const userId = req.tokenData.userId
+
+    const postToUpdate = await Post.find({
+      userId: userId,
+    })
+
+    if (postToUpdate.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Not found post to update",
+      })
+    }
+    const updatePost = await Post.findOneAndUpdate(
+      {
+        userId: userId,
+      },
+      {
+        content: content,
+      },
+      {
+        new: true,
+      }
+    )
+    res.status(201).json({
+      success: true,
+      message: "Post updated succesfully",
+      data: updatePost,
+    })
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Post can't be deleted",
+      error: Error,
+    })
+  }
+}

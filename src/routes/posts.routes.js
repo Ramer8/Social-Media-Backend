@@ -2,9 +2,11 @@ import { Router } from "express"
 import {
   createPost,
   deletePost,
+  updatePost,
   // getPosts
 } from "../controllers/post.controller.js"
 import { auth } from "../middlewares/auth.js"
+import { updateProfile } from "../controllers/user.controller.js"
 
 const router = Router()
 
@@ -14,10 +16,10 @@ router.post("/", auth, createPost)
 
 router.delete("/:id", auth, deletePost)
 
-////////router.get("/", auth, getPosts)
+router.put("/", auth, updatePost)
 
+//router.get("/", auth, getPosts)
 // router.delete('/:id', auth, deletePostById)
-// router.put('/', auth, updatePost)
 // router.get('/own', auth, getOwnPosts)
 // router.get('/:id', auth, getPostById)
 // router.get('/:userId', auth, getPostByUserId)
