@@ -160,3 +160,33 @@ export const getOwnPosts = async (req, res) => {
     })
   }
 }
+
+export const getPosts = async (req, res) => {
+  try {
+    // when i have post of other users this function must show too.
+    const userId = req.tokenData.userId
+
+    const getMyPost = await Post.find({
+      userId: userId,
+    }).select("_id, content")
+
+    if (getMyPost.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Not found post to show",
+      })
+    }
+
+    res.status(201).json({
+      success: true,
+      message: "Post retrieved succesfully",
+      data: getMyPost,
+    })
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Post can't be retrieved",
+      error: Error,
+    })
+  }
+}
