@@ -1,9 +1,0 @@
-import { Router } from "express"
-import { BooksRegister } from "../controllers/books.controllers.js"
-
-const router = Router()
-
-router.post("/register", BooksRegister)
-// route.post('/show', getBooks )
-
-export default router
