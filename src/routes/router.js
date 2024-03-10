@@ -12,6 +12,8 @@ router.use("/auth", authRoutes)
 
 router.use("/users", usersRoutes)
 
+router.use("/users", usersRoutes)
+
 //define books route
 router.use("/books", booksRoutes)
 

@@ -1,10 +1,11 @@
 import { Router } from "express"
-import { getUsers } from "../controllers/user.controller.js"
-// import { getProfile } from "../controllers/user.controller.js"
+import { getUsers, getProfile } from "../controllers/user.controller.js"
 
 const router = Router()
 
 router.get("/", getUsers)
-// router.get("/", getProfile)
+router.get("/profile", getProfile)
 
 export default router
+
+//continue with another end points and create de middelwares.
