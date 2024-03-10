@@ -41,3 +41,36 @@ export const getProfile = async (req, res) => {
     })
   }
 }
+export const updateProfile = async (req, res) => {
+  try {
+    const userId = req.tokenData.userId
+    const name = req.body.name
+    // const updateProfile = await User.findByIdAndUpdate(userId, newData, {
+    //   new: true,
+    // })
+
+    const updatedProfile = await User.findOneAndUpdate(
+      {
+        _id: userId,
+      },
+      {
+        name: name,
+      },
+      {
+        new: true,
+      }
+    )
+
+    res.status(201).json({
+      success: true,
+      message: "Profile updated succesfully",
+      data: updatedProfile,
+    })
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Profile can't update",
+      error: error,
+    })
+  }
+}

@@ -6,18 +6,16 @@ import usersRoutes from "./users.routes.js"
 const router = Router()
 
 // define auth route
-router.use("/auth", authRoutes)
+router.use("/auth", authRoutes) //Ready Auth endpoints
 
 // define users route
 
 router.use("/users", usersRoutes)
+// Ready :
+//Get All User
+//Show profile
 
 //define books route
 router.use("/books", booksRoutes)
-
-// router.use("/books", booksRoutes)
-
-//define post route
-// router.use("/post", postRoutes)
 
 export default router
