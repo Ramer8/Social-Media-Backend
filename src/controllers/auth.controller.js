@@ -4,9 +4,9 @@ import jwt from "jsonwebtoken"
 
 export const register = async (req, res) => {
   try {
+    const name = req.body.name
     const email = req.body.email
     const password = req.body.password
-    console.log(email, password)
 
     if (password.length < 6 || password.length > 10) {
       return res.status(400).json({
@@ -26,6 +26,7 @@ export const register = async (req, res) => {
     const passwordEncrypted = bcrypt.hashSync(password, 5)
 
     const newUser = await User.create({
+      name: name,
       email: email,
       password: passwordEncrypted,
     })
@@ -34,6 +35,7 @@ export const register = async (req, res) => {
       success: true,
       message: "User registered succesfully",
       data: newUser,
+      // data: [newUser.name, newUser.email, newUser.role, newUser._id],
     })
   } catch (error) {
     res.status(500).json({
@@ -68,8 +70,6 @@ export const login = async (req, res) => {
       email: email,
     })
 
-    console.log(user)
-
     if (!user) {
       res.status(400).json({
         success: false,
@@ -96,7 +96,7 @@ export const login = async (req, res) => {
         expiresIn: "2h",
       }
     )
-
+    console.log(token) // Quitarlo al finalizar proyecto
     res.status(200).json({
       success: true,
       message: "User logged succesfully",

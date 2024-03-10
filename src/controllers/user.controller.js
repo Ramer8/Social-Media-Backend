@@ -2,7 +2,7 @@ import User from "../models/User.js"
 
 export const getUsers = async (req, res) => {
   try {
-    const showUser = await User.find()
+    const showUser = await User.find().select("-password")
     // const books = await Book.find().select("title")
 
     res.status(201).json({
@@ -20,21 +20,18 @@ export const getUsers = async (req, res) => {
 }
 export const getProfile = async (req, res) => {
   try {
-    console.log(req.body.id)
-    // const userId = req.tokenData.userId
+    const userId = req.tokenData.userId
 
-    console.log("hello")
-    const { _id } = req.body // then get from TOKEN.DATA
-    // const _id = "65e991237ece36b9f88f2c2a"
     const showProfile = await User.findById({
-      _id: _id,
-    }).select("-password, -role")
-    console.log(showProfile)
-    // const profile = await User.find().select("-password")
+      _id: userId,
+    }).select("-password")
+
+    // .select("-password, -role") //avoid two key/value
+
     res.status(201).json({
       success: true,
-      message: "Book registered succesfully",
-      //   data: showProfile,
+      message: "Profile registered succesfully",
+      data: showProfile,
     })
   } catch (error) {
     res.status(500).json({
