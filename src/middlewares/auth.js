@@ -10,7 +10,6 @@ export const auth = async (req, res, next) => {
         message: "Unauthorized. No token provided",
       })
     }
-    console.log("is authorized!")
     // if token works, it decodes encrypted data within token (tokendata: userId and roleName)
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
