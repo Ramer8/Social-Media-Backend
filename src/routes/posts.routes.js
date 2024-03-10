@@ -6,9 +6,9 @@ import {
   getOwnPosts,
   getPosts,
   getPostById,
+  getAnyUserPost,
 } from "../controllers/post.controller.js"
 import { auth } from "../middlewares/auth.js"
-import { updateProfile } from "../controllers/user.controller.js"
 
 const router = Router()
 
@@ -24,7 +24,10 @@ router.get("/own", auth, getOwnPosts)
 
 router.get("/", auth, getPosts) //retrieve all post
 
-router.get("/:id", auth, getPostById)
+// router.get("/users/:user-id", auth, getAnyUserPost)
+
+router.get("/thendelete/:userIdparams", auth, getAnyUserPost)
+
 // router.delete('/:id', auth, deletePostById)
 // router.get('/:id', auth, getPostById)
 // router.get('/:userId', auth, getPostByUserId)

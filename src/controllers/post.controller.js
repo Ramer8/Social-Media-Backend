@@ -165,6 +165,7 @@ export const getPosts = async (req, res) => {
   try {
     // when i have post of other users this function must show too.
     const userId = req.tokenData.userId
+    console.log("from getPosts")
 
     const getMyPost = await Post.find({
       userId: userId,
@@ -190,8 +191,11 @@ export const getPosts = async (req, res) => {
     })
   }
 }
+
 export const getPostById = async (req, res) => {
   try {
+    console.log(req.params.id)
+    console.log("from getPostById")
     //We need simple id in post content to use in route
     //and then get this id to update.
     // Current I get the post content of logged user
@@ -217,6 +221,37 @@ export const getPostById = async (req, res) => {
       success: true,
       message: "Post retrieved succesfully",
       data: getMyPost,
+    })
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Post can't be retrieved",
+      error: Error,
+    })
+  }
+}
+
+export const getAnyUserPost = async (req, res) => {
+  try {
+    const userId = req.tokenData.userId
+    const { userIdparams } = req.params
+    console.log(userIdparams)
+    // const getMyPost = await Post.find({
+    //   userId: userId,
+    //   // _id: id
+    // }).select("_id, content")
+
+    // if (getMyPost.length === 0) {
+    //   return res.status(400).json({
+    //     success: false,
+    //     message: "Not found post to show",
+    //   })
+    // }
+    console.log("from getAnyUserPost")
+    res.status(201).json({
+      success: true,
+      message: "Post retrieved succesfully",
+      // data: getMyPost,
     })
   } catch (error) {
     res.status(500).json({
