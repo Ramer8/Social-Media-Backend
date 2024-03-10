@@ -190,3 +190,39 @@ export const getPosts = async (req, res) => {
     })
   }
 }
+export const getPostById = async (req, res) => {
+  try {
+    //We need simple id in post content to use in route
+    //and then get this id to update.
+    // Current I get the post content of logged user
+    // When I get this ordinary simple id number just
+    // change this line (userId: userId), to
+    // the request id number like (id : req.params.id)
+    // and put this id number on get method too.
+    const userId = req.tokenData.userId
+    const { id } = req.params
+    const getMyPost = await Post.find({
+      userId: userId,
+      // _id: id
+    }).select("_id, content")
+
+    if (getMyPost.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Not found post to show",
+      })
+    }
+
+    res.status(201).json({
+      success: true,
+      message: "Post retrieved succesfully",
+      data: getMyPost,
+    })
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Post can't be retrieved",
+      error: Error,
+    })
+  }
+}
