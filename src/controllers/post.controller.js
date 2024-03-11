@@ -115,14 +115,6 @@ export const updatePost = async (req, res) => {
 }
 export const getOwnPosts = async (req, res) => {
   try {
-    //We need simple id in post content to use in route
-    //and then get this id to update.
-    // Current I delete the post content of logged user
-    // When I get this ordinary simple id number just
-    // change this line (userId: userId), to
-    // the request id number like (id : req.body.id)
-    // and put this id number on update method too.
-
     const userId = req.tokenData.userId
 
     const getMyPost = await Post.find({
@@ -152,15 +144,9 @@ export const getOwnPosts = async (req, res) => {
 
 export const getPosts = async (req, res) => {
   try {
-    // when i have post of other users this function must show too.
-    const userId = req.tokenData.userId
-    console.log("from getPosts")
+    const getUsersPost = await Post.find()
 
-    const getMyPost = await Post.find({
-      userId: userId,
-    }).select("_id, content")
-
-    if (getMyPost.length === 0) {
+    if (getUsersPost.length === 0) {
       return res.status(400).json({
         success: false,
         message: "Not found post to show",
@@ -170,7 +156,7 @@ export const getPosts = async (req, res) => {
     res.status(201).json({
       success: true,
       message: "Post retrieved succesfully",
-      data: getMyPost,
+      data: getUsersPost,
     })
   } catch (error) {
     res.status(500).json({
