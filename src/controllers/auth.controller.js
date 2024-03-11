@@ -93,10 +93,10 @@ export const login = async (req, res) => {
       },
       process.env.JWT_SECRET,
       {
-        expiresIn: "2h",
+        expiresIn: "4h", //Change to 2h before upload project
       }
     )
-    console.log(token) // Quitarlo al finalizar proyecto
+    console.log(token) // Delete before upload project
     res.status(200).json({
       success: true,
       message: "User logged succesfully",

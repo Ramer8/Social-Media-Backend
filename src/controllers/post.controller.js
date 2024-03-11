@@ -262,32 +262,41 @@ export const getAnyUserPost = async (req, res) => {
   }
 }
 
-// export const putLikeAndDislike = async (req, res) => {
-//   try {
-//     const { userId } = req.tokenData
-//     console.log(userId)
-//     const id = req.params.id
-//     console.log(id)
+export const putLikeAndDislike = async (req, res) => {
+  try {
+    const { userId } = req.tokenData
+    const id = req.params.id
 
-//     // const postToLike = await Post.find({ _id: "65eeba6821d13f957a66e946" })
+    const getMyPost = await Post.findById({
+      _id: id,
+    })
+    //
+    if (!getMyPost) {
+      throw new Error("Post not found")
+    }
 
-//     // console.log(postToLike)
+    //Check if exist the userId in Likes object
+    const isInArray = getMyPost.likes.includes(userId)
+    console.log(isInArray)
 
-//     const getMyPost = await Post.find({
-//       userId: userId,
-//     }).select("_id, content")
+    if (isInArray) {
+      getMyPost.likes.pop(userId)
+      await getMyPost.save()
+    } else {
+      getMyPost.likes.push(userId)
+      console.log("no esta")
+      await getMyPost.save()
+    }
 
-//     console.log(getMyPost)
-//     res.status(201).json({
-//       success: true,
-//       message: "Post retrieved succesfully",
-//       // data: getMyPost,
-//     })
-//   } catch (error) {
-//     res.status(500).json({
-//       success: false,
-//       message: "Like or disLike can't be putted",
-//       error: Error,
-//     })
-//   }
-// }
+    res.status(201).json({
+      success: true,
+      message: "Post retrieved succesfully",
+      data: getMyPost,
+    })
+  } catch (error) {
+    if (error.message === "Post not found") {
+      return handleError(res, error.message, 400)
+    }
+    handleError(res, "ERROR", 500)
+  }
+}

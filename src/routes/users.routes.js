@@ -5,7 +5,7 @@ import {
   updateProfile,
 } from "../controllers/user.controller.js"
 
-// import getAnyUserPost from "../controllers/post.controller.js"
+import { getAnyUserPost } from "../controllers/post.controller.js"
 
 import { auth } from "../middlewares/auth.js"
 
@@ -20,7 +20,7 @@ router.get("/profile", auth, getProfile)
 // update profile
 router.put("/profile", auth, updateProfile)
 
-// router.get("/posts/:user-id", auth, getAnyUserPost)
+router.get("/posts/:user-id", auth, getAnyUserPost)
 
 // get by email
 // router.get("/", auth, getUserByEmailQueryFilters)

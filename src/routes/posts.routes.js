@@ -5,8 +5,9 @@ import {
   updatePost,
   getOwnPosts,
   getPosts,
-  getPostById,
+  // getPostById,
   getAnyUserPost,
+  putLikeAndDislike,
 } from "../controllers/post.controller.js"
 import { auth } from "../middlewares/auth.js"
 
@@ -23,6 +24,8 @@ router.put("/", auth, updatePost)
 router.get("/own", auth, getOwnPosts)
 
 router.get("/", auth, getPosts) //retrieve all post
+
+router.put("/like/:id", auth, putLikeAndDislike)
 
 // router.get("/users/:user-id", auth, getAnyUserPost)
 
