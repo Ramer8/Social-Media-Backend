@@ -1,4 +1,5 @@
 import Post from "../models/Post.js"
+import handleError from "../errors/handleError.js"
 // import User from "../models/User.js"
 
 export const createPost = async (req, res) => {
@@ -6,31 +7,30 @@ export const createPost = async (req, res) => {
     const userId = req.tokenData.userId
     const { content } = req.body
 
-    // const name = await User.findById(userId).name
+    // const PostOwnerName = await User.find()
+    // console.log(PostOwnerName)
 
-    if (!content || content === "") {
-      return res.status(400).json({
-        success: false,
-        message: "Content required",
-      })
+    if (content === "" || !content) {
+      throw new Error("Content required")
     }
 
     const newPost = await Post.create({
       userId,
       content,
+      // PostOwnerName,
     })
-
+    console.log(newPost)
     res.status(201).json({
       success: true,
       message: "Post created succesfully",
       data: newPost,
     })
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "Post can't be created",
-      error: error,
-    })
+    if (error.message === "Content required") {
+      return handleError(res, error.message, 400)
+    }
+
+    handleError(res, "Post can't be created", 500)
   }
 }
 
@@ -261,3 +261,33 @@ export const getAnyUserPost = async (req, res) => {
     })
   }
 }
+
+// export const putLikeAndDislike = async (req, res) => {
+//   try {
+//     const { userId } = req.tokenData
+//     console.log(userId)
+//     const id = req.params.id
+//     console.log(id)
+
+//     // const postToLike = await Post.find({ _id: "65eeba6821d13f957a66e946" })
+
+//     // console.log(postToLike)
+
+//     const getMyPost = await Post.find({
+//       userId: userId,
+//     }).select("_id, content")
+
+//     console.log(getMyPost)
+//     res.status(201).json({
+//       success: true,
+//       message: "Post retrieved succesfully",
+//       // data: getMyPost,
+//     })
+//   } catch (error) {
+//     res.status(500).json({
+//       success: false,
+//       message: "Like or disLike can't be putted",
+//       error: Error,
+//     })
+//   }
+// }
