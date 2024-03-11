@@ -5,7 +5,7 @@ import {
   updatePost,
   getOwnPosts,
   getPosts,
-  // getPostById,
+  getPostById,
   getAnyUserPost,
   putLikeAndDislike,
 } from "../controllers/post.controller.js"
@@ -25,6 +25,8 @@ router.get("/own", auth, getOwnPosts)
 
 router.get("/", auth, getPosts) //retrieve all post
 
+router.get("/:id", auth, getPostById)
+
 router.put("/like/:id", auth, putLikeAndDislike)
 
 // router.get("/users/:user-id", auth, getAnyUserPost)
@@ -32,7 +34,6 @@ router.put("/like/:id", auth, putLikeAndDislike)
 router.get("/thendelete/:userIdparams", auth, getAnyUserPost)
 
 // router.delete('/:id', auth, deletePostById)
-// router.get('/:id', auth, getPostById)
 // router.get('/:userId', auth, getPostByUserId)
 
 export default router
