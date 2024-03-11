@@ -37,17 +37,11 @@ export const createPost = async (req, res) => {
 export const deletePost = async (req, res) => {
   try {
     const { id } = req.params
-    //We need simple id in post content to use in route
-    //and then get this id to delete.
-    // Current I delete the post content of logged user
-    // When I get this ordinary simple id number just
-    // change this line code "50" (userId: userId), to
-    // the request id number like (id : req.params.id)
-    // and put this id number on delete method too.
 
     const userId = req.tokenData.userId
 
-    const getPost = await Post.find({
+    const getPost = await Post.findOne({
+      _id: id,
       userId: userId,
     })
 
@@ -58,10 +52,9 @@ export const deletePost = async (req, res) => {
       })
     }
     const postToDelete = await Post.deleteOne({
-      userId,
+      _id: id,
     })
 
-    console.log(postToDelete)
     res.status(201).json({
       success: true,
       message: "Post deleted succesfully",
@@ -275,16 +268,14 @@ export const putLikeAndDislike = async (req, res) => {
       throw new Error("Post not found")
     }
 
-    //Check if exist the userId in Likes object
+    //Check if exist the userId in 'Likes'
     const isInArray = getMyPost.likes.includes(userId)
-    console.log(isInArray)
 
     if (isInArray) {
       getMyPost.likes.pop(userId)
       await getMyPost.save()
     } else {
       getMyPost.likes.push(userId)
-      console.log("no esta")
       await getMyPost.save()
     }
 
