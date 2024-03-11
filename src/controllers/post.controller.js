@@ -37,7 +37,6 @@ export const createPost = async (req, res) => {
 export const deletePost = async (req, res) => {
   try {
     const { id } = req.params
-
     const userId = req.tokenData.userId
 
     const getPost = await Post.findOne({
@@ -45,16 +44,16 @@ export const deletePost = async (req, res) => {
       userId: userId,
     })
 
-    if (getPost.length === 0) {
-      return res.status(400).json({
-        success: false,
-        message: "Not found post to delete",
-      })
+    if (!getPost) {
+      throw new Error("Not found post to delete")
+      // return res.status(400).json({
+      //   success: false,
+      //   message: "Not found post to delete",
+      // })
     }
     const postToDelete = await Post.deleteOne({
       _id: id,
     })
-
     res.status(201).json({
       success: true,
       message: "Post deleted succesfully",
@@ -62,32 +61,29 @@ export const deletePost = async (req, res) => {
       data: postToDelete,
     })
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "Post can't be deleted",
-      error: Error,
-    })
+    if (error.message === "Not found post to delete") {
+      return handleError(res, error.message, 400)
+    }
+    handleError(res, "ERROR", 500)
+    // res.status(500).json({
+    //   success: false,
+    //   message: "Post can't be deleted",
+    //   error: Error,
+    // })
   }
 }
 export const updatePost = async (req, res) => {
   try {
     const { content } = req.body
-
-    //We need simple id in post content to use in route
-    //and then get this id to update.
-    // Current I delete the post content of logged user
-    // When I get this ordinary simple id number just
-    // change this line (userId: userId), to
-    // the request id number like (id : req.body.id)
-    // and put this id number on update method too.
-
+    const { id } = req.params
     const userId = req.tokenData.userId
 
-    const postToUpdate = await Post.find({
+    const postToUpdate = await Post.findOne({
+      _id: id,
       userId: userId,
     })
 
-    if (postToUpdate.length === 0) {
+    if (!postToUpdate) {
       return res.status(400).json({
         success: false,
         message: "Not found post to update",
@@ -263,7 +259,7 @@ export const putLikeAndDislike = async (req, res) => {
     const getMyPost = await Post.findById({
       _id: id,
     })
-    //
+
     if (!getMyPost) {
       throw new Error("Post not found")
     }

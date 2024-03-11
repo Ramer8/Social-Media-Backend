@@ -19,7 +19,7 @@ router.post("/", auth, createPost)
 
 router.delete("/:id", auth, deletePost)
 
-router.put("/", auth, updatePost)
+router.put("/:id", auth, updatePost)
 
 router.get("/own", auth, getOwnPosts)
 
