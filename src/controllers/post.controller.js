@@ -199,25 +199,21 @@ export const getPostById = async (req, res) => {
 
 export const getAnyUserPost = async (req, res) => {
   try {
-    const userId = req.tokenData.userId
-    const { userIdparams } = req.params
-    console.log(userIdparams)
-    // const getMyPost = await Post.find({
-    //   userId: userId,
-    //   // _id: id
-    // }).select("_id, content")
+    const userId = req.params.id
 
-    // if (getMyPost.length === 0) {
-    //   return res.status(400).json({
-    //     success: false,
-    //     message: "Not found post to show",
-    //   })
-    // }
-    console.log("from getAnyUserPost")
+    const getMyPost = await Post.find({
+      userId: userId,
+    })
+    if (getMyPost.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Not found post to show",
+      })
+    }
     res.status(201).json({
       success: true,
       message: "Post retrieved succesfully",
-      // data: getMyPost,
+      data: getMyPost,
     })
   } catch (error) {
     res.status(500).json({

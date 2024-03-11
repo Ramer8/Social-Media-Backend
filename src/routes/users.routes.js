@@ -20,7 +20,8 @@ router.get("/profile", auth, getProfile)
 // update profile
 router.put("/profile", auth, updateProfile)
 
-router.get("/posts/:user-id", auth, getAnyUserPost)
+// Retrieve user post by id
+router.get("/posts/:id", auth, getAnyUserPost)
 
 // get by email
 // router.get("/", auth, getUserByEmailQueryFilters)
