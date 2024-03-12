@@ -1,14 +1,10 @@
 import Post from "../models/Post.js"
 import handleError from "../errors/handleError.js"
-// import User from "../models/User.js"
 
 export const createPost = async (req, res) => {
   try {
     const userId = req.tokenData.userId
     const { content } = req.body
-
-    // const PostOwnerName = await User.find()
-    // console.log(PostOwnerName)
 
     if (content === "" || !content) {
       throw new Error("Content required")
@@ -17,9 +13,8 @@ export const createPost = async (req, res) => {
     const newPost = await Post.create({
       userId,
       content,
-      // PostOwnerName,
     })
-    console.log(newPost)
+
     res.status(201).json({
       success: true,
       message: "Post created succesfully",
@@ -72,6 +67,7 @@ export const deletePost = async (req, res) => {
     // })
   }
 }
+
 export const updatePost = async (req, res) => {
   try {
     const { content } = req.body
@@ -89,6 +85,7 @@ export const updatePost = async (req, res) => {
         message: "Not found post to update",
       })
     }
+
     const updatePost = await Post.findOneAndUpdate(
       {
         userId: userId,
@@ -100,6 +97,7 @@ export const updatePost = async (req, res) => {
         new: true,
       }
     )
+
     res.status(201).json({
       success: true,
       message: "Post updated succesfully",
@@ -113,13 +111,14 @@ export const updatePost = async (req, res) => {
     })
   }
 }
+
 export const getOwnPosts = async (req, res) => {
   try {
     const userId = req.tokenData.userId
 
     const getMyPost = await Post.find({
       userId: userId,
-    }).select("_id, content")
+    })
 
     if (getMyPost.length === 0) {
       return res.status(400).json({
@@ -204,12 +203,14 @@ export const getAnyUserPost = async (req, res) => {
     const getMyPost = await Post.find({
       userId: userId,
     })
+
     if (getMyPost.length === 0) {
       return res.status(400).json({
         success: false,
         message: "Not found post to show",
       })
     }
+
     res.status(201).json({
       success: true,
       message: "Post retrieved succesfully",
