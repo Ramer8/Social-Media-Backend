@@ -34,6 +34,9 @@ Atach Image
 
 REST API design for FRONTEND
 
+Create two main tables, User and Post.  They are related to each other. The fields of the Post table are: post id, user id, comments, name, and likes.
+The User table fields are: name, email, password, role, following, and followers.
+
 #### Endpoints
 
 ###Install and Develop
