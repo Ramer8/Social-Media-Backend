@@ -1,10 +1,8 @@
-// import express from "express"
+import express from "express"
 import "dotenv/config"
 import { dbConnection } from "./database/db.js"
+import router from "./routes/router.js" // me permite cambiarle el nombre por no usar default y estar exportado por default
 import app from "./app.js"
-
-// import router from "./routes/router.js" // me permite cambiarle el nombre por no usar default y estar exportado por default
-
 // const app = express()
 
 // //parsea el body
@@ -20,7 +18,7 @@ const PORT = process.env.PORT || 3500
 
 // app.use("/api", router)
 
-// //app.use(router)
+//app.use(router)
 //si no pongo nada dentro cambia la ruta a => localhost:3500/auth/login
 
 dbConnection()
