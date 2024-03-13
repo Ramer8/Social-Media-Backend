@@ -228,8 +228,7 @@ export const getAnyUserPost = async (req, res) => {
 export const putLikeAndDislike = async (req, res) => {
   try {
     const { userId } = req.tokenData
-    const id = req.params.id
-
+    const id = req.params.userId
     const getMyPost = await Post.findById({
       _id: id,
     })
@@ -240,9 +239,9 @@ export const putLikeAndDislike = async (req, res) => {
 
     //Check if exist the userId in 'Likes'
     const isInArray = getMyPost.likes.includes(userId)
-
     if (isInArray) {
-      getMyPost.likes.pop(userId)
+      const index = getMyPost.likes.indexOf(userId)
+      getMyPost.likes.splice(index, 1)
       await getMyPost.save()
     } else {
       getMyPost.likes.push(userId)
