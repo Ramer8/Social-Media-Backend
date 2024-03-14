@@ -167,6 +167,8 @@ import mongoose from "mongoose"
 import bcrypt from "bcrypt"
 import "dotenv/config"
 
+//User Seeder
+
 const userSeeder = async () => {
   try {
     mongoose.connect(process.env.MONGO_URI, {})
@@ -187,7 +189,7 @@ const userSeeder = async () => {
   }
 }
 
-//Post Seeder
+// Post Seeder
 
 const postSeeder = async () => {
   try {
@@ -239,12 +241,39 @@ executeSeeders()
 }
 ```
 
+---
+
+#### Middlewares
+
+<ol>auth( )</ol>
+  
+  - We will use 'middleware' functions to control access to our data.
+
+  - Auth`(authorization system based on TOKENs) will block anything that should not be seen by the general public. In our case, it only does not affect`register` and `login`.
+- The `auth()` function verifies an encrypted TOKEN created automatically at login. With an active token we have access to owner profile, owner post or post user followed.
+
+<ol>isSuperAdmin( )</ol>
+  
+- We also want to grant special administrative access. With another middleware, the `isSuperAdmin()` function, we control PERMISSIONS.
+- The 'superadmin' role would be able to reach all data, while Users would have a more limited reach. More levels can be implemented.
+
+---
+
+#### Deployment 
+
+To do deployment of this project we use FL0.
+
+`https://social-media-backend-dev-dmjn.1.us-1.fl0.io`
+
+We can use this url with endpoints collection of thunder 
+
 ### Install and Develop
+To start this project we install the following packages:
 
 ```bash
 $ npm init --yes
 ```
-
+#### We install Express
 ```bash
 $ npm i express
 ```
@@ -257,20 +286,23 @@ $ npm i nodemon -D
 $ npm i dotenv -D
 ```
 
-##### add Type module into package.json
+##### Add Type module into package.json
 
 ```
 "type": "module",
 ```
-
+##### We install Mongoose to model ower application data.
 ```bash
 $ npm i mongoose
 ```
-
-Add to .env
+#### We create .env to enviroment vaiables
+Add to `.env` and create `.env.sample`
 
 ```
-PORT = 4000
+
+PORT = 4XXX
+
+## DATA BASE CONNECTION 
 MONGO_URI=mongodb://root:root@127.0.0.1:27017/test?authSource=admin
 
 JWT_SECRET=XXXXXX
@@ -279,26 +311,56 @@ JWT_SECRET=XXXXXX
 
 ---
 
-Updated User.js
-
 ```txt
-create model
+Create models
 ```
 
 ```txt
-create controller
+Create controller
 ```
 
 ```txt
-install bcrypt to password encrypt
+Install bcrypt to password encrypt
 
 ```
 
 ```bash
 $ npm i bcrypt
 ```
+```txt
+Create routes folder with his files routes: auth.routes, posts.routes, users.routes & router.
 
 
+---
+
+
+```
+To handle errors we managment with handleError function.
+
+```js
+
+const handleError = (res, errorMessage, statusErrorCode = 500) => {
+  res.status(statusErrorCode).json({
+    success: false,
+    message: errorMessage,
+  })
+}
+
+export default handleError
+
+
+```
+---
+
+#### MongoDB Compass
+
+We can check our data with the MongoDB compass. 
+We do that inserting MONGO_URI variables.
+`Users`
+<img src="./src/img/MongoCompassUsers.png"/>
+
+`Post`
+<img src="./src/img/MongoCompassPost.png"/>
 
 ---
 
