@@ -14,12 +14,44 @@
 
 Very thanks for interest in my fifth project with Geekshubs Academy of the Full Stack Development Bootcamp 🚀.
 
-<STACK ICONS>
+---
 
 #### Description
 
 The project consists of creating a social network where users can register, access the network and interact with each other.
 Users can also follow or unfollow other users, write comments on their profiles or posts.
+
+
+---
+
+
+
+[![GITHUB]][github-url][![DOCKER]][docker-url][![Mongo][MongoDB]][MongoDB-url][![Node][Node.JS]][Node.JS-url][![Express][Express.js]][Express.js-url][![js]][js-url][![JWT]][JWT-url]
+
+[JWT]: https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens
+[JWT-url]: https://jwt.io/
+[Express.js]: https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB
+[Express.js-url]: https://expressjs.com/
+[MongoDB]: https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white
+[MongoDB-url]: https://www.mongodb.com/es
+[Node.JS]: https://img.shields.io/badge/node.js-026E00?style=for-the-badge&logo=node.js&logoColor=white
+[Node.JS-url]: https://nextjs.org/
+[MYSQL]: https://img.shields.io/badge/mysql-3E6E93?style=for-the-badge&logo=mysql&logoColor=white
+[MYSQL-url]: https://www.mysql.com/
+[GITHUB]: https://img.shields.io/badge/github-24292F?style=for-the-badge&logo=github&logoColor=white
+[github-url]: https://www.github.com/
+[GIT]: https://img.shields.io/badge/git-F54D27?style=for-the-badge&logo=git&logoColor=white
+[git-url]: https://git-scm.com/
+[LINKEDIN]: https://img.shields.io/badge/linkedin-0274B3?style=for-the-badge&logo=linkedin&logoColor=white
+[LINKEDIN-url]: https://www.linkedin.com/
+[JS]: https://img.shields.io/badge/javascipt-EFD81D?style=for-the-badge&logo=javascript&logoColor=black
+[js-url]: https://developer.mozilla.org/es/docs/Web/JavaScript
+[DOCKER]: https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white
+[docker-url]: https://www.docker.com/
+[sequelize-url]: https://www.sequelize.org/
+[gmail-url]: https://www.gmail.com/
+
+
 
 #### First Structure (Routes)
 
@@ -27,6 +59,10 @@ Users can also follow or unfollow other users, write comments on their profiles 
 - Posts
 
   Thats tables have relation between us.
+
+
+
+
 
 #### Data Base Diagram
 
@@ -47,36 +83,60 @@ The User table fields are: name, email, password, role, following, and followers
 
 ### Endpoints
 
-POST - Create post -
+#### AUTH
 
+POST - User Register - 
+`http://localhost4000/api/auth/register`
+
+POST - User Login - 
+`http://localhost4000/api/auth/login`
+
+#### USERS
+
+GET - Show all Users (super_admin) -
+`http://localhost4000/api/users`
+
+GET - Show User profile -
+`http://localhost4000/api/users/profile`
+
+PUT - Update User Profile (name) -
+`http://localhost4000/api/users/profile`
+
+GET - Filter by Email (super_admin) - 
+`http://localhost4000/api/users?email=ejemplo@ejemplo.com`
+
+DELETE - Delete User (super_admin) - 
+`http://localhost4000/api/users/:id`
+
+PUT - Update User Role (super_admin) -
+`http://localhost4000/api/users/fid}/role`
+
+#### POST
+
+POST - Create post -
 `http://localhost4000/api/posts`
 
 DELETE - Delete post by id -
-
 `http://localhost4000/api/posts/:id`
 
 PUT -Update Post by id -
-
 `http://localhost4000/api/posts`
 
 GET - Retrieve own posts
-
 `http://localhost4000/api/posts/own`
 
 GET - Retrieve all posts -
-
 `http://localhost4000/api/posts`
 
 GET - Retrieve posts by id -
-
 `http://localhost4000/api/posts/:id`
 
 GET - Retrieve user posts -
-
 `http://localhost4000/api/users/posts/:user-id`
 
-PUT - Like 👍🏽 & dislike 👎🏽 -
+#### LIKES
 
+PUT - Like 👍🏽 & dislike 👎🏽 -
 `http://localhost4000/api/posts/like/:id`
 
 ---
@@ -138,5 +198,11 @@ install bcrypt to password encrypt
 
 ```bash
 $ npm i bcrypt
-
 ```
+
+---
+
+### Author
+
+<a href = "mailto:ramirolpoblete@gmail.com"><img src="https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a> <a href="https://www.linkedin.com/in/ramiropoblete/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> <a href = "https://github.com/Ramer8"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a>
+
