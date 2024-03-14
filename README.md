@@ -140,6 +140,104 @@ PUT - Like 👍🏽 & dislike 👎🏽 -
 `http://localhost4000/api/posts/like/:id`
 
 ---
+`All non-public endpoints with corresponding middlewares`
+
+<ol>We can find here the collection of all endpoints in Thunder Client:
+You have to open Thunder Client
+Go to collections and import this file:
+</ol>
+
+`./HTTP/thunder-collection_SOCIAL_MEDIA.json`
+<ol>
+Also can use this collection if run deployed project
+</ol>
+
+`./HTTP/thunder-collection_SOCIAL_MEDIA_DEPLOY.json`
+
+#### Seeders
+
+To check out this project, you'll need to populate the database. We create some random users and post. In the example code only one object is shown for each seeder
+
+User & Post Seeder  `$ npm run seed`
+```js
+
+import User from "../../models/User.js"
+import Post from "../../models/Post.js"
+import mongoose from "mongoose"
+import bcrypt from "bcrypt"
+import "dotenv/config"
+
+const userSeeder = async () => {
+  try {
+    mongoose.connect(process.env.MONGO_URI, {})
+
+    console.log("Connected to MongoDB")
+
+    const user = await User.create([
+      {
+        _id: new mongoose.Types.ObjectId("65eebde6af5c0f55427ff54e"),
+        email: "admin@admin.com",
+        password: bcrypt.hashSync("123456", 6),
+        role: "admin",
+      },
+])
+    console.log("User created")
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+//Post Seeder
+
+const postSeeder = async () => {
+  try {
+    mongoose.connect(process.env.MONGO_URI, {})
+
+    console.log("Connected to MongoDB")
+
+    const post = await Post.create([
+      {
+        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
+        userId: new mongoose.Types.ObjectId("65eebde6af5c0f55427ff54e"),
+        likes: ["65eebde6af5c0f55427ff54e", "65ef99191cab165c23b93315"],
+      },
+    ])
+
+    console.log("Posts created")
+  } catch (error) {
+    console.log(error)
+  } finally {
+    mongoose.disconnect()
+  }
+}
+
+const executeSeeders = async () => {
+  await userSeeder()
+  await postSeeder()
+}
+executeSeeders()
+
+```
+ <ol>Users created</ol>
+<li> - super_admin, admin & random user - </li>
+
+```
+{
+"email": "superadmin@superadmin.com"
+"password": 123456,
+"role_id": "super_admin"
+}
+{
+"email": "admin@admin.com"
+"password": 123456,
+"role_id": "admin"
+}
+{
+"email": "user@user.com"
+"password": 123456,
+"role_id": "user"
+}
+```
 
 ### Install and Develop
 
@@ -199,6 +297,8 @@ install bcrypt to password encrypt
 ```bash
 $ npm i bcrypt
 ```
+
+
 
 ---
 
