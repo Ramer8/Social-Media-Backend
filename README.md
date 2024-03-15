@@ -21,10 +21,7 @@ Very thanks for interest in my fifth project with Geekshubs Academy of the Full 
 The project consists of creating a social network where users can register, access the network and interact with each other.
 Users can also follow or unfollow other users, write comments on their profiles or posts.
 
-
 ---
-
-
 
 [![GITHUB]][github-url][![DOCKER]][docker-url][![Mongo][MongoDB]][MongoDB-url][![Node][Node.JS]][Node.JS-url][![Express][Express.js]][Express.js-url][![js]][js-url][![JWT]][JWT-url]
 
@@ -51,18 +48,12 @@ Users can also follow or unfollow other users, write comments on their profiles 
 [sequelize-url]: https://www.sequelize.org/
 [gmail-url]: https://www.gmail.com/
 
-
-
 #### First Structure (Routes)
 
 - Users
 - Posts
 
   Thats tables have relation between us.
-
-
-
-
 
 #### Data Base Diagram
 
@@ -85,10 +76,10 @@ The User table fields are: name, email, password, role, following, and followers
 
 #### AUTH
 
-POST - User Register - 
+POST - User Register -
 `http://localhost4000/api/auth/register`
 
-POST - User Login - 
+POST - User Login -
 `http://localhost4000/api/auth/login`
 
 #### USERS
@@ -102,10 +93,10 @@ GET - Show User profile -
 PUT - Update User Profile (name) -
 `http://localhost4000/api/users/profile`
 
-GET - Filter by Email (super_admin) - 
+GET - Filter by Email (super_admin) -
 `http://localhost4000/api/users?email=ejemplo@ejemplo.com`
 
-DELETE - Delete User (super_admin) - 
+DELETE - Delete User (super_admin) -
 `http://localhost4000/api/users/:id`
 
 PUT - Update User Role (super_admin) -
@@ -140,6 +131,7 @@ PUT - Like 👍🏽 & dislike 👎🏽 -
 `http://localhost4000/api/posts/like/:id`
 
 ---
+
 `All non-public endpoints with corresponding middlewares`
 
 <ol>We can find here the collection of all endpoints in Thunder Client:
@@ -148,6 +140,7 @@ Go to collections and import this file:
 </ol>
 
 `./HTTP/thunder-collection_SOCIAL_MEDIA.json`
+
 <ol>
 Also can use this collection if run deployed project
 </ol>
@@ -158,9 +151,9 @@ Also can use this collection if run deployed project
 
 To check out this project, you'll need to populate the database. We create some random users and post. In the example code only one object is shown for each seeder
 
-User & Post Seeder  `$ npm run seed`
-```js
+User & Post Seeder `$ npm run seed`
 
+```js
 import User from "../../models/User.js"
 import Post from "../../models/Post.js"
 import mongoose from "mongoose"
@@ -182,7 +175,7 @@ const userSeeder = async () => {
         password: bcrypt.hashSync("123456", 6),
         role: "admin",
       },
-])
+    ])
     console.log("User created")
   } catch (error) {
     console.log(error)
@@ -218,8 +211,8 @@ const executeSeeders = async () => {
   await postSeeder()
 }
 executeSeeders()
-
 ```
+
  <ol>Users created</ol>
 <li> - super_admin, admin & random user - </li>
 
@@ -249,7 +242,7 @@ executeSeeders()
   
   - We will use 'middleware' functions to control access to our data.
 
-  - Auth`(authorization system based on TOKENs) will block anything that should not be seen by the general public. In our case, it only does not affect`register` and `login`.
+- Auth`(authorization system based on TOKENs) will block anything that should not be seen by the general public. In our case, it only does not affect`register`and`login`.
 - The `auth()` function verifies an encrypted TOKEN created automatically at login. With an active token we have access to owner profile, owner post or post user followed.
 
 <ol>isSuperAdmin( )</ol>
@@ -259,21 +252,24 @@ executeSeeders()
 
 ---
 
-#### Deployment 
+#### Deployment
 
 To do deployment of this project we use FL0.
 
 `https://social-media-backend-dev-dmjn.1.us-1.fl0.io`
 
-We can use this url with endpoints collection of thunder 
+We can use this url with endpoints collection of thunder
 
 ### Install and Develop
+
 To start this project we install the following packages:
 
 ```bash
 $ npm init --yes
 ```
+
 #### We install Express
+
 ```bash
 $ npm i express
 ```
@@ -291,18 +287,22 @@ $ npm i dotenv -D
 ```
 "type": "module",
 ```
+
 ##### We install Mongoose to model ower application data.
+
 ```bash
 $ npm i mongoose
 ```
+
 #### We create .env to enviroment vaiables
+
 Add to `.env` and create `.env.sample`
 
 ```
 
 PORT = 4XXX
 
-## DATA BASE CONNECTION 
+## DATA BASE CONNECTION
 MONGO_URI=mongodb://root:root@127.0.0.1:27017/test?authSource=admin
 
 JWT_SECRET=XXXXXX
@@ -327,6 +327,7 @@ Install bcrypt to password encrypt
 ```bash
 $ npm i bcrypt
 ```
+
 ```txt
 Create routes folder with his files routes: auth.routes, posts.routes, users.routes & router.
 
@@ -335,10 +336,10 @@ Create routes folder with his files routes: auth.routes, posts.routes, users.rou
 
 
 ```
+
 To handle errors we managment with handleError function.
 
 ```js
-
 const handleError = (res, errorMessage, statusErrorCode = 500) => {
   res.status(statusErrorCode).json({
     success: false,
@@ -347,24 +348,22 @@ const handleError = (res, errorMessage, statusErrorCode = 500) => {
 }
 
 export default handleError
-
-
 ```
+
 ---
 
 #### MongoDB Compass
 
-We can check our data with the MongoDB compass. 
+We can check our data with the MongoDB compass.
 We do that inserting MONGO_URI variables.
 `Users`
-<img src="./src/img/MongoCompassUsers.png"/>
+<img src="./src/img/MongoCompasUsers.png"/>
 
 `Post`
-<img src="./src/img/MongoCompassPost.png"/>
+<img src="./src/img/MongoCompasPost.png"/>
 
 ---
 
 ### Author
 
 <a href = "mailto:ramirolpoblete@gmail.com"><img src="https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a> <a href="https://www.linkedin.com/in/ramiropoblete/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> <a href = "https://github.com/Ramer8"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a>
-
