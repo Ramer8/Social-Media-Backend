@@ -2,9 +2,10 @@ import express from "express"
 import "dotenv/config"
 import { dbConnection } from "./database/db.js"
 import router from "./routes/router.js" // me permite cambiarle el nombre por no usar default y estar exportado por default
-
+import cors from "cors"
 const app = express()
 
+app.use(cors())
 //parsea el body
 app.use(express.json())
 
