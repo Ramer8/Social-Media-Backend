@@ -252,15 +252,21 @@ executeSeeders()
 
 ---
 
-#### Deployment
-
-To do deployment of this project we use FL0.
-
-`https://social-media-backend-dev-dmjn.1.us-1.fl0.io`
-
-We can use this url with endpoints collection of thunder
 
 ### Install and Develop
+
+#### Install Docker
+ <ol>
+  
+ <li> Install docker and run this command to get a container</li>
+
+`$ docker run --name mongo -p 27017:27017 -e  -d`
+
+<li>Example</li>
+
+`$ mysql -h localhost -P 3306 -u root -p you will need -h (host), -P (port), -u(username) and -p (password)`
+
+</ol>
 
 To start this project we install the following packages:
 
@@ -277,7 +283,7 @@ $ npm i express
 ```bash
 $ npm i nodemon -D
 ```
-
+Install 'dotenv' to added th depencencies and will grab data from the .env file
 ```bash
 $ npm i dotenv -D
 ```
@@ -330,12 +336,9 @@ $ npm i bcrypt
 
 ```txt
 Create routes folder with his files routes: auth.routes, posts.routes, users.routes & router.
-
+```
 
 ---
-
-
-```
 
 To handle errors we managment with handleError function.
 
@@ -354,13 +357,36 @@ export default handleError
 
 #### MongoDB Compass
 
+<ol> 
 We can check our data with the MongoDB compass.
 We do that inserting MONGO_URI variables.
+ 
+`MONGO_URI=mongodb://root:root@127.0.0.1:27017/DataBaseName?authSource=admin`
+ 
+</ol>
+
+
 `Users`
+
 <img src="./src/img/MongoCompasUsers.png"/>
 
 `Post`
+
 <img src="./src/img/MongoCompasPost.png"/>
+
+---
+
+#### Deployment
+
+First to do deployment we need a cloud data base, we get this using Mongo DB cloud.
+
+
+
+To do deployment of this project we use FL0.
+
+`https://social-media-backend-dev-dmjn.1.us-1.fl0.io`
+
+We can use this url with endpoints collection of thunder client
 
 ---
 
