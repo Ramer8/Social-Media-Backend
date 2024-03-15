@@ -2,9 +2,11 @@
 
 ---
 
- <h4/> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="darkblue" class="bi bi-facebook" viewBox="0 0 16 16">
+ <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="darkblue" class="bi bi-facebook" viewBox="0 0 16 16">
   <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
-</svg> fakebook</h4>
+</svg>
+
+<h4> fakebook </h4>
 
 ---
 
@@ -252,10 +254,10 @@ executeSeeders()
 
 ---
 
-
 ### Install and Develop
 
 #### Install Docker
+
  <ol>
   
  <li> Install docker and run this command to get a container</li>
@@ -283,7 +285,9 @@ $ npm i express
 ```bash
 $ npm i nodemon -D
 ```
+
 Install 'dotenv' to added th depencencies and will grab data from the .env file
+
 ```bash
 $ npm i dotenv -D
 ```
@@ -365,7 +369,6 @@ We do that inserting MONGO_URI variables.
  
 </ol>
 
-
 `Users`
 
 <img src="./src/img/MongoCompasUsers.png"/>
@@ -376,17 +379,56 @@ We do that inserting MONGO_URI variables.
 
 ---
 
+#### Data Base
+
+<ol>
+First to do deployment we need a cloud data base, we get this using Mongo DB cloud.
+We need register & log in `https://www.mongodb.com/es/cloud/atlas/register`
+</ol>
+
+<img src="./src/img/MongoAtlasRegister.png"/>
+
+Create a project, his name & key value.
+
+<img src="./src/img/CreateProjectMongoAtlas.png"/>
+
+Choose IP connection (we use `0.0.0.0/0` to get access)
+
+<img src="./src/img/ConfigurationAtlasIP.png"/>
+
+Seed DataBase & check data
+
+`Users`
+
+<img src="./src/img/MongoAtlasUsers.png"/>
+
+`Post`
+
+<img src="./src/img/MongoAtlasPost.png"/>
+
+---
+
 #### Deployment
 
-First to do deployment we need a cloud data base, we get this using Mongo DB cloud.
-
-
-
 To do deployment of this project we use FL0.
+
+<ol>
+
+<li>Add quick start to `package.json` .</li>
+
+`"start": "node ./src/server.js"`
+
+<li> Commit & push to update the remote repository.</li>
+
+<li> Add Environment variables and deploy </li>
+
+<img src="./src/img/Fl0.png"/>
 
 `https://social-media-backend-dev-dmjn.1.us-1.fl0.io`
 
 We can use this url with endpoints collection of thunder client
+
+</ol>
 
 ---
 
