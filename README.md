@@ -74,6 +74,7 @@ The User table fields are: name, email, password, role, following, and followers
 
 ---
 
+
 ### Endpoints
 
 #### AUTH
@@ -149,6 +150,117 @@ Also can use this collection if run deployed project
 
 `./HTTP/thunder-collection_SOCIAL_MEDIA_DEPLOY.json`
 
+#### Models
+We create User.js object model
+
+```js
+import { Schema, model } from "mongoose"
+
+const UserSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: false,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    role: {
+      type: String,
+      enum: ["user", "admin", "super_admin"],
+      default: "user",
+    },
+    following: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        default: [],
+      },
+    ],
+    followers: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        default: [],
+      },
+    ],
+    visibility: {
+      type: String,
+      enum: ["public", "private"],
+      default: "public",
+    },
+    is_active: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  {
+    timestamps: true,
+    versionKey: false,
+  }
+)
+
+const User = model("User", UserSchema)
+
+export default User
+
+```
+Post.js Object model
+
+
+```js
+import { Schema, model } from "mongoose"
+
+const PostSchema = new Schema(
+  {
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+    PostOwnerName: {
+      type: String,
+      required: false,
+    },
+    likes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+  },
+  {
+    timestamps: true,
+    versionKey: false,
+  }
+)
+
+const Post = model("Post", PostSchema)
+
+export default Post
+
+
+```
+
+--- 
+
+
+#### Controllers
+
+Create controller folder with `auth.controller.js`, `post.controller.js` & `user.controller.js` files and his endopoint function. 
+
+---
+
 #### Seeders
 
 To check out this project, you'll need to populate the database. We create some random users and post. In the example code only one object is shown for each seeder
@@ -218,7 +330,7 @@ executeSeeders()
  <ol>Users created</ol>
 <li> - super_admin, admin & random user - </li>
 
-```
+```js
 {
 "email": "superadmin@superadmin.com"
 "password": 123456,
@@ -308,7 +420,7 @@ $ npm i mongoose
 
 Add to `.env` and create `.env.sample`
 
-```
+```js
 
 PORT = 4XXX
 
@@ -379,10 +491,10 @@ We do that inserting MONGO_URI variables.
 
 ---
 
-#### Data Base
+#### MongoDB Atlas
 
 <ol>
-First to do deployment we need a cloud data base, we get this using Mongo DB cloud.
+First to do deployment we need a cloud data base, we get this using Mongo DB cloud. (Atlas)
 We need register & log in `https://www.mongodb.com/es/cloud/atlas/register`
 </ol>
 
@@ -424,11 +536,48 @@ To do deployment of this project we use FL0.
 
 <img src="./src/img/Fl0.png"/>
 
+<!-- The project is deplyed here: -->
+
 `https://social-media-backend-dev-dmjn.1.us-1.fl0.io`
 
 We can use this url with endpoints collection of thunder client
 
 </ol>
+
+---
+
+ #### Run Project
+ 
+  <ol>
+   
+  <li>Clone this repository
+  </li>
+  
+  <li>Run in terminal
+  </li>
+ 
+`$ npm install`
+
+  <li> Create .env from .env.sample </li>
+
+  <li> Choose local or cloud connection and set MONGO_URI connection string </li>
+
+  <li> Connect repository with database </li>
+
+  <li> Run seeders:</li>
+
+`$ npm run seed`
+
+  <li> Start server:</li>
+
+`$ npm run dev`
+
+<li> Open MongoDB Compass or MongoAtlas to check data </li> 
+
+<li> Backend testing with thunder client collection</li>
+    
+  </ol>
+
 
 ---
 
