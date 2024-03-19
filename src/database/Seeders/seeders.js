@@ -3,7 +3,6 @@ import Post from "../../models/Post.js"
 import mongoose from "mongoose"
 import bcrypt from "bcrypt"
 import "dotenv/config"
-import { fakeES as faker } from "@faker-js/faker"
 
 const userSeeder = async () => {
   try {
@@ -76,6 +75,8 @@ const postSeeder = async () => {
     mongoose.connect(process.env.MONGO_URI, {})
 
     console.log("Connected to MongoDB")
+
+    await Post.deleteMany({})
 
     const post = await Post.create([
       {
