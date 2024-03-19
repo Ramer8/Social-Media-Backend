@@ -3,6 +3,7 @@ import Post from "../../models/Post.js"
 import mongoose from "mongoose"
 import bcrypt from "bcrypt"
 import "dotenv/config"
+import { fakeES as faker } from "@faker-js/faker"
 
 const userSeeder = async () => {
   try {
@@ -10,36 +11,57 @@ const userSeeder = async () => {
 
     console.log("Connected to MongoDB")
 
+    await User.deleteMany({})
+
     const user = await User.create([
       {
         _id: new mongoose.Types.ObjectId("65eebde6af5c0f55427ff54e"),
+        name: "admin",
         email: "admin@admin.com",
         password: bcrypt.hashSync("123456", 6),
         role: "admin",
       },
       {
         _id: new mongoose.Types.ObjectId("65eebde6af5c0f55427ff54f"),
+        name: "superadmin",
         email: "superadmin@superadmin.com",
         password: bcrypt.hashSync("123456", 6),
         role: "super_admin",
       },
       {
         _id: new mongoose.Types.ObjectId("65ef8bf56801986a3dda66a6"),
+        name: "user",
         email: "user@user.com",
         password: bcrypt.hashSync("123456", 6),
         role: "user",
+        following: ["65eebde6af5c0f55427ff54e", "65eebde6af5c0f55427ff54f"],
+        followers: ["65ef99191cab165c23b93315", "65ef98fd2294f6789077eed5"],
       },
       {
         _id: new mongoose.Types.ObjectId("65ef98fd2294f6789077eed5"),
+        name: "user1",
         email: "user1@user.com",
         password: bcrypt.hashSync("123456", 6),
         role: "user",
+        following: ["65eebde6af5c0f55427ff54e", "65eebde6af5c0f55427ff54f"],
+        followers: [
+          "65ef8bf56801986a3dda66a6",
+          "65eebde6af5c0f55427ff54e",
+          "65eebde6af5c0f55427ff54f",
+        ],
       },
       {
         _id: new mongoose.Types.ObjectId("65ef99191cab165c23b93315"),
+        name: "user2",
         email: "user2@user.com",
         password: bcrypt.hashSync("123456", 6),
         role: "user",
+        following: ["65eebde6af5c0f55427ff54e", "65eebde6af5c0f55427ff54f"],
+        followers: [
+          "65ef98fd2294f6789077eed5",
+          "65ef8bf56801986a3dda66a6",
+          "65ef8bf56801986a3dda66a6",
+        ],
       },
     ])
 
