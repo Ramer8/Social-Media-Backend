@@ -3,7 +3,6 @@ import User from "../models/User.js"
 export const getUsers = async (req, res) => {
   try {
     const showUser = await User.find().select("-password")
-    // const books = await Book.find().select("title")
 
     res.status(201).json({
       success: true,
@@ -45,9 +44,6 @@ export const updateProfile = async (req, res) => {
   try {
     const userId = req.tokenData.userId
     const name = req.body.name
-    // const updateProfile = await User.findByIdAndUpdate(userId, newData, {
-    //   new: true,
-    // })
 
     const updatedProfile = await User.findOneAndUpdate(
       {
@@ -65,6 +61,62 @@ export const updateProfile = async (req, res) => {
       success: true,
       message: "Profile updated succesfully",
       data: updatedProfile,
+    })
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Profile can't update",
+      error: error,
+    })
+  }
+}
+// export const getUserByEmail = async (req, res) => {
+//   try {
+//     const email = req.query.email
+
+//     let queryList = {}
+
+//     if (req.query.email) {
+//       queryList.email = req.query.email
+//     }
+
+//     const fetchedEmail = await User.find(queryList)
+
+//     console.log(fetchedEmail)
+
+//     res.status(201).json({
+//       success: true,
+//       message: "Email founded succesfully",
+//       // data: fetchedEmail,
+//     })
+//   } catch (error) {
+//     res.status(500).json({
+//       success: false,
+//       message: "Email can't update",
+//       error: error,
+//     })
+//   }
+// }
+
+export const deleteUser = async (req, res) => {
+  try {
+    const idToDelete = req.params.id
+
+    const deleteUser = await User.deleteOne({
+      _id: idToDelete,
+    })
+
+    if (!deleteUser.deletedCount) {
+      return res.status(404).json({
+        success: false,
+        message: "user not found",
+      })
+    }
+
+    res.status(201).json({
+      success: true,
+      message: "User deleted succesfully",
+      data: deleteUser,
     })
   } catch (error) {
     res.status(500).json({

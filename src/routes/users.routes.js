@@ -3,6 +3,8 @@ import {
   getUsers,
   getProfile,
   updateProfile,
+  deleteUser,
+  // getUserByEmail,
 } from "../controllers/user.controller.js"
 
 import { getAnyUserPost } from "../controllers/post.controller.js"
@@ -15,18 +17,20 @@ const router = Router()
 
 // route=> localhost:4000/api/users
 
+// router.get("", getUserByEmail) // must put before getUsers cause have the same path.
+
 // get profile
+
 router.get("/", auth, isSuperAdmin, getUsers)
+
 router.get("/profile", auth, getProfile)
 
-// update profile
-router.put("/profile", auth, updateProfile)
+router.put("/profile", auth, updateProfile) // update profile
 
-// Retrieve user post by id
-router.get("/posts/:id", auth, getAnyUserPost)
+router.get("/posts/:id", auth, getAnyUserPost) // Retrieve user post by id
 
-// get by email
-// router.get("/", auth, getUserByEmailQueryFilters)
-// app.get("/api/users?", getUserByEmailQueryFilters)
+router.delete("/:id", auth, isSuperAdmin, deleteUser)
+
+// router.put("/:id/role", updateRoleById)
 
 export default router
