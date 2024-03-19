@@ -1,12 +1,14 @@
 import express from "express"
 import "dotenv/config"
 import { dbConnection } from "./database/db.js"
-import router from "./routes/router.js" // me permite cambiarle el nombre por no usar default y estar exportado por default
+import router from "./routes/router.js"
 import cors from "cors"
 const app = express()
 
 app.use(cors())
-//parsea el body
+
+//parse body
+
 app.use(express.json())
 
 const PORT = process.env.PORT || 3500
@@ -20,7 +22,8 @@ app.get("/api/healthy", (req, res) => {
 app.use("/api", router)
 
 //app.use(router)
-//si no pongo nada dentro cambia la ruta a => localhost:3500/auth/login
+
+// if don't write nothing inside (), the path change to => localhost:3500/auth/login
 
 dbConnection()
   .then(() => {

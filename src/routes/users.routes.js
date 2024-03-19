@@ -15,7 +15,7 @@ import { auth } from "../middlewares/auth.js"
 
 const router = Router()
 
-// route=> localhost:4000/api/users
+// route => localhost:4000/api/users
 
 // router.get("", getUserByEmail) // must put before getUsers cause have the same path.
 

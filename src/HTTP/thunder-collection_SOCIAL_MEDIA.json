@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "SOCIAL MEDIA",
-    "dateExported": "2024-03-14T22:26:30.850Z",
+    "dateExported": "2024-03-19T23:48:17.912Z",
     "version": "1.1",
     "folders": [
         {
@@ -43,12 +43,12 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-03-09T18:15:54.954Z",
-            "modified": "2024-03-13T18:21:34.045Z",
+            "modified": "2024-03-19T13:29:47.264Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\":\"Ali \",\n\"email\":\"ali@max.com\",\n\"password\": \"12345678\"\n}",
+                "raw": "{\n  \"name\":\"Maximiliano\",\n\"email\":\"maximiliano@max.com\",\n\"password\": \"12345678\"\n}",
                 "form": []
             },
             "reqType": "post",
@@ -87,12 +87,12 @@
             "method": "POST",
             "sortNum": 20000,
             "created": "2024-03-09T20:44:40.928Z",
-            "modified": "2024-03-12T23:35:26.858Z",
+            "modified": "2024-03-19T14:02:28.811Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \n\"email\":\"rrr123@max.com\",\n\"password\": \"12345678\"\n}",
+                "raw": "{\n  \n\"email\":\"superadmin@superadmin.com\",\n\"password\": \"123456\"\n}",
                 "form": []
             },
             "reqType": "post",
@@ -318,6 +318,31 @@
             "tests": []
         },
         {
+            "_id": "3df8808e-b96d-4994-a3b4-7abfb8dd8ac8",
+            "colId": "ba6c224a-9f9d-41f0-a308-a3d3e920e3cc",
+            "containerId": "8dafa1b8-ab7b-40ae-9065-0301f7e353e9",
+            "name": "GET PROFILE BY EMAIL QUERY FILTERS (super_admin)",
+            "url": "http://localhost:4000/api/users?email=maximiliano",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2024-03-19T12:32:20.052Z",
+            "modified": "2024-03-19T13:30:51.888Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "email",
+                    "value": "maximiliano",
+                    "isPath": false
+                }
+            ],
+            "reqType": "get",
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1LCJyb2xlTmFtZSI6InN1cGVyX2FkbWluIiwiaWF0IjoxNzA5OTQ4MTU1LCJleHAiOjE3MDk5NTUzNTV9.IpjAMfECybvx-WJ5Dh5YOnvHblpLh7WHmLjTeYcaO10"
+            },
+            "tests": []
+        },
+        {
             "_id": "888f8e1e-c079-4c1b-bc17-3330041c1604",
             "colId": "ba6c224a-9f9d-41f0-a308-a3d3e920e3cc",
             "containerId": "24dec4b8-8f8a-47fe-8a59-ad7819049042",
@@ -333,6 +358,25 @@
             "auth": {
                 "type": "bearer",
                 "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWVmNTIyNjBhM2YyMTc1ZDdmNDYyMGIiLCJyb2xlTmFtZSI6InVzZXIiLCJpYXQiOjE3MTAxODI5NTYsImV4cCI6MTcxMDE5NzM1Nn0.k0iaKq0MHHF0_jHAw1oAzH4g7kJ2-AJF-bmUAo0TVh0"
+            },
+            "tests": []
+        },
+        {
+            "_id": "33c459a0-3650-4f9b-a7ef-b0c53ddbc6c5",
+            "colId": "ba6c224a-9f9d-41f0-a308-a3d3e920e3cc",
+            "containerId": "8dafa1b8-ab7b-40ae-9065-0301f7e353e9",
+            "name": "DELETE USER (super_admin)",
+            "url": "localhost:4000/api/users/65ef99191cab165c23b93315",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2024-03-19T13:59:32.900Z",
+            "modified": "2024-03-19T14:15:48.915Z",
+            "headers": [],
+            "params": [],
+            "reqType": "del",
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWVlYmRlNmFmNWMwZjU1NDI3ZmY1NGYiLCJyb2xlTmFtZSI6InN1cGVyX2FkbWluIiwiaWF0IjoxNzEwODU2OTcyLCJleHAiOjE3MTA4NzEzNzJ9.ZSBAeNcBVgf_zcSZXgcTZqJa0h7_x9ae7dJBojjeCD8"
             },
             "tests": []
         }

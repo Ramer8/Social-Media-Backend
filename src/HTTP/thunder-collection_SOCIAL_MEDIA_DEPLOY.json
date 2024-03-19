@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "SOCIAL MEDIA DEPLOY",
-    "dateExported": "2024-03-14T22:27:16.218Z",
+    "dateExported": "2024-03-19T23:49:46.365Z",
     "version": "1.1",
     "folders": [
         {
@@ -43,12 +43,12 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-03-13T08:45:11.608Z",
-            "modified": "2024-03-13T08:56:50.614Z",
+            "modified": "2024-03-19T23:44:36.964Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\":\"Hello Server\",\n\"email\":\"hello@hello.com\",\n\"password\": \"12345678\"\n}",
+                "raw": "{\n  \"name\":\"Michael Jordan\",\n\"email\":\"michael@jordan.com\",\n\"password\": \"12345678\"\n}",
                 "form": []
             },
             "reqType": "post",
@@ -318,6 +318,31 @@
             "tests": []
         },
         {
+            "_id": "e89840f4-d3a8-4a70-be86-d0f23e38a914",
+            "colId": "d50a66d5-e235-4eb9-b2c4-ed3f75c7c99e",
+            "containerId": "da2aa3cc-dd72-43f5-af7c-1a25521b3c1a",
+            "name": "GET PROFILE BY EMAIL QUERY FILTERS (super_admin) Copy",
+            "url": "http://social-media-backend-dev-dmjn.1.us-1.fl0.io/api/users?email=user",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2024-03-19T13:26:18.818Z",
+            "modified": "2024-03-19T13:27:15.911Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "email",
+                    "value": "user",
+                    "isPath": false
+                }
+            ],
+            "reqType": "get",
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1LCJyb2xlTmFtZSI6InN1cGVyX2FkbWluIiwiaWF0IjoxNzA5OTQ4MTU1LCJleHAiOjE3MDk5NTUzNTV9.IpjAMfECybvx-WJ5Dh5YOnvHblpLh7WHmLjTeYcaO10"
+            },
+            "tests": []
+        },
+        {
             "_id": "e0102c7b-766b-40b7-a21d-9a73b2a19015",
             "colId": "d50a66d5-e235-4eb9-b2c4-ed3f75c7c99e",
             "containerId": "650d9d2e-cf94-4632-b2fd-f0e15de10a61",
@@ -330,6 +355,25 @@
             "headers": [],
             "params": [],
             "reqType": "get",
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWVmNTIyNjBhM2YyMTc1ZDdmNDYyMGIiLCJyb2xlTmFtZSI6InVzZXIiLCJpYXQiOjE3MTAxODI5NTYsImV4cCI6MTcxMDE5NzM1Nn0.k0iaKq0MHHF0_jHAw1oAzH4g7kJ2-AJF-bmUAo0TVh0"
+            },
+            "tests": []
+        },
+        {
+            "_id": "c0c87911-8dce-4989-ba42-d498d90ae567",
+            "colId": "d50a66d5-e235-4eb9-b2c4-ed3f75c7c99e",
+            "containerId": "da2aa3cc-dd72-43f5-af7c-1a25521b3c1a",
+            "name": "DELETE USER ",
+            "url": "https://social-media-backend-dev-dmjn.1.us-1.fl0.io/api/user/",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2024-03-19T13:51:18.148Z",
+            "modified": "2024-03-19T13:58:44.200Z",
+            "headers": [],
+            "params": [],
+            "reqType": "del",
             "auth": {
                 "type": "bearer",
                 "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWVmNTIyNjBhM2YyMTc1ZDdmNDYyMGIiLCJyb2xlTmFtZSI6InVzZXIiLCJpYXQiOjE3MTAxODI5NTYsImV4cCI6MTcxMDE5NzM1Nn0.k0iaKq0MHHF0_jHAw1oAzH4g7kJ2-AJF-bmUAo0TVh0"

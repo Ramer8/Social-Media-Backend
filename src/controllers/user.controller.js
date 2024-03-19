@@ -70,6 +70,7 @@ export const updateProfile = async (req, res) => {
     })
   }
 }
+
 // export const getUserByEmail = async (req, res) => {
 //   try {
 //     const email = req.query.email
@@ -109,7 +110,7 @@ export const deleteUser = async (req, res) => {
     if (!deleteUser.deletedCount) {
       return res.status(404).json({
         success: false,
-        message: "user not found",
+        message: "User not found",
       })
     }
 
@@ -121,7 +122,7 @@ export const deleteUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "Profile can't update",
+      message: "User can't deleted",
       error: error,
     })
   }

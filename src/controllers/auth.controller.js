@@ -35,7 +35,6 @@ export const register = async (req, res) => {
       success: true,
       message: "User registered succesfully",
       data: newUser,
-      // data: [newUser.name, newUser.email, newUser.role, newUser._id],
     })
   } catch (error) {
     res.status(500).json({
@@ -93,10 +92,9 @@ export const login = async (req, res) => {
       },
       process.env.JWT_SECRET,
       {
-        expiresIn: "4h", //Change to 2h before upload project
+        expiresIn: "2h",
       }
     )
-    console.log(token) // Delete before upload project
     res.status(200).json({
       success: true,
       message: "User logged succesfully",

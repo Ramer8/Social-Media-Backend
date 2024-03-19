@@ -41,10 +41,6 @@ export const deletePost = async (req, res) => {
 
     if (!getPost) {
       throw new Error("Not found post to delete")
-      // return res.status(400).json({
-      //   success: false,
-      //   message: "Not found post to delete",
-      // })
     }
     const postToDelete = await Post.deleteOne({
       _id: id,
@@ -60,11 +56,6 @@ export const deletePost = async (req, res) => {
       return handleError(res, error.message, 400)
     }
     handleError(res, "ERROR", 500)
-    // res.status(500).json({
-    //   success: false,
-    //   message: "Post can't be deleted",
-    //   error: Error,
-    // })
   }
 }
 
