@@ -186,6 +186,8 @@ GET - Retrieve user posts -
 PUT - Like 👍🏽 & dislike 👎🏽 -
 `http://localhost4000/api/posts/like/:id`
 
+<img src="./src/img/like&dislikePosts.png" />
+
 ---
 
 `All non-public endpoints with corresponding middlewares`
