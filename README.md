@@ -244,14 +244,12 @@ const UserSchema = new Schema(
       {
         type: Schema.Types.ObjectId,
         ref: "User",
-        default: [],
       },
     ],
     followers: [
       {
         type: Schema.Types.ObjectId,
         ref: "User",
-        default: [],
       },
     ],
     visibility: {
@@ -596,11 +594,23 @@ To do deployment of this project we use FL0.
 
 <img src="./img/Fl0.png"/>
 
-<!-- The project is deplyed here: -->
+#### The project is deployed here:
 
 `https://social-media-backend-dev-dmjn.1.us-1.fl0.io`
 
 We can use this url with endpoints collection of thunder client
+
+</ol>
+
+---
+
+<ol>
+
+## Frontend
+
+I did the initial Frontend with react, you can see the repository and his readme here:
+
+`https://github.com/Ramer8/Social-Media-Frontend`
 
 </ol>
 
@@ -626,7 +636,7 @@ We can use this url with endpoints collection of thunder client
 
   <li> Run seeders:</li>
 
-`$ npm run seed`
+`$ npm run run-seeders`
 
   <li> Start server:</li>
 
