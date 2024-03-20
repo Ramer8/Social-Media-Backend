@@ -30,11 +30,16 @@ export const register = async (req, res) => {
       email: email,
       password: passwordEncrypted,
     })
-
     res.status(201).json({
       success: true,
       message: "User registered succesfully",
-      data: newUser,
+      data: {
+        name: newUser.name,
+        email: newUser.email,
+        role: newUser.role,
+        is_active: newUser.is_active,
+        id: newUser._id,
+      },
     })
   } catch (error) {
     res.status(500).json({
