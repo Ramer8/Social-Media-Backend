@@ -57,11 +57,11 @@ Users can also follow or unfollow other users, write comments on their profiles 
 
   Thats tables have relation between us.
 
-#### Data Base Diagram
-
 ---
 
-Atach Image
+#### Data Base Diagram
+
+<img src="./src/img/DataBaseDiagram.jpg"/>
 
 ---
 
@@ -73,7 +73,6 @@ Create two main tables, User and Post. They are related to each other. The field
 The User table fields are: name, email, password, role, following, and followers.
 
 ---
-
 
 ### Endpoints
 
@@ -151,6 +150,7 @@ Also can use this collection if run deployed project
 `./HTTP/thunder-collection_SOCIAL_MEDIA_DEPLOY.json`
 
 #### Models
+
 We create User.js object model
 
 ```js
@@ -209,10 +209,9 @@ const UserSchema = new Schema(
 const User = model("User", UserSchema)
 
 export default User
-
 ```
-Post.js Object model
 
+Post.js Object model
 
 ```js
 import { Schema, model } from "mongoose"
@@ -248,16 +247,13 @@ const PostSchema = new Schema(
 const Post = model("Post", PostSchema)
 
 export default Post
-
-
 ```
 
---- 
-
+---
 
 #### Controllers
 
-Create controller folder with `auth.controller.js`, `post.controller.js` & `user.controller.js` files and his endopoint function. 
+Create controller folder with `auth.controller.js`, `post.controller.js` & `user.controller.js` files and his endopoint function.
 
 ---
 
@@ -546,8 +542,8 @@ We can use this url with endpoints collection of thunder client
 
 ---
 
- #### Run Project
- 
+#### Run Project
+
   <ol>
    
   <li>Clone this repository
@@ -572,12 +568,11 @@ We can use this url with endpoints collection of thunder client
 
 `$ npm run dev`
 
-<li> Open MongoDB Compass or MongoAtlas to check data </li> 
+<li> Open MongoDB Compass or MongoAtlas to check data </li>
 
 <li> Backend testing with thunder client collection</li>
     
   </ol>
-
 
 ---
 
