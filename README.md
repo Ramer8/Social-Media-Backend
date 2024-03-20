@@ -111,8 +111,12 @@ GET - Show User profile -
 PUT - Update User Profile (name) -
 `http://localhost4000/api/users/profile`
 
-GET - Filter by Email (super_admin) -
-`http://localhost4000/api/users?email=ejemplo@ejemplo.com`
+<img src="./src/img/updateUserProfile.png" />
+
+---
+
+<!-- GET - Filter by Email (super_admin) -
+`http://localhost4000/api/users?email=ejemplo@ejemplo.com` -->
 
 DELETE - Delete User (super_admin) -
 `http://localhost4000/api/users/:id`
