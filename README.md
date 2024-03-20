@@ -61,7 +61,7 @@ Users can also follow or unfollow other users, write comments on their profiles 
 
 #### Data Base Diagram
 
-<img src="./img/DataBaseDiagram.jpg"/>
+<img src="./img/DataBaseDiagram1.jpg"/>
 
 ---
 
