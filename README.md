@@ -10,7 +10,7 @@
 
 ---
 
-<img src="./src/img/1.jpeg"/>
+<img src="./img/1.jpeg"/>
 
 ---
 
@@ -61,7 +61,7 @@ Users can also follow or unfollow other users, write comments on their profiles 
 
 #### Data Base Diagram
 
-<img src="./src/img/DataBaseDiagram.jpg"/>
+<img src="./img/DataBaseDiagram.jpg"/>
 
 ---
 
@@ -78,15 +78,19 @@ The User table fields are: name, email, password, role, following, and followers
 
 #### AUTH
 
+---
+
 POST - User Register -
 `http://localhost4000/api/auth/register`
 
-<img src="./src/img/register.png" />
+<img src="./img/register.png" />
+
+---
 
 POST - User Login -
 `http://localhost4000/api/auth/login`
 
-<img src="./src/img/postUrl.png" />
+<img src="./img/postUrl.png" />
 
 ---
 
@@ -97,21 +101,21 @@ POST - User Login -
 GET - Show all Users (super_admin) -
 `http://localhost4000/api/users`
 
-<img src="./src/img/getAllUserSuperadmin.png" />
+<img src="./img/getAllUserSuperadmin.png" />
 
 ---
 
 GET - Show User profile -
 `http://localhost4000/api/users/profile`
 
-<img src="./src/img/getUserProfile.png" />
+<img src="./img/getUserProfile.png" />
 
 ---
 
 PUT - Update User Profile (name) -
 `http://localhost4000/api/users/profile`
 
-<img src="./src/img/updateUserProfile.png" />
+<img src="./img/updateUserProfile.png" />
 
 ---
 
@@ -121,12 +125,14 @@ PUT - Update User Profile (name) -
 DELETE - Delete User (super_admin) -
 `http://localhost4000/api/users/:id`
 
-<img src="./src/img/deleteUserbyId.png" />
+<img src="./img/deleteUserbyId.png" />
 
 ---
 
-PUT - Update User Role (super_admin) -
-`http://localhost4000/api/users/fid}/role`
+<!-- PUT - Update User Role (super_admin) -
+`http://localhost4000/api/users/fid}/role` -->
+
+---
 
 #### POST
 
@@ -135,58 +141,60 @@ PUT - Update User Role (super_admin) -
 POST - Create post -
 `http://localhost4000/api/posts`
 
-<img src="./src/img/createdPost.png" />
+<img src="./img/createdPost.png" />
 
 ---
 
 DELETE - Delete post by id -
 `http://localhost4000/api/posts/:id`
 
-<img src="./src/img/deletePost.png" />
+<img src="./img/deletePost.png" />
 
 ---
 
 PUT - Update Post by id -
 `http://localhost4000/api/posts`
 
-<img src="./src/img/updatePostById.png" />
+<img src="./img/updatePostById.png" />
 
 ---
 
 GET - Retrieve own posts
 `http://localhost4000/api/posts/own`
 
-<img src="./src/img/getOwnPost.png" />
+<img src="./img/getOwnPost.png" />
 
 ---
 
 GET - Retrieve all posts -
 `http://localhost4000/api/posts`
 
-<img src="./src/img/getAllUserPosts.png" />
+<img src="./img/getAllUserPosts.png" />
 
 ---
 
 GET - Retrieve posts by post id -
 `http://localhost4000/api/posts/:id`
 
-<img src="./src/img/getPostByPostId.png" />
+<img src="./img/getPostByPostId.png" />
 
 ---
 
 GET - Retrieve user posts -
 `http://localhost4000/api/users/posts/:user-id`
 
-<img src="./src/img/getPostUserIdUserPath.png" />
+<img src="./img/getPostUserIdUserPath.png" />
 
 ---
 
 #### LIKES
 
+---
+
 PUT - Like 👍🏽 & dislike 👎🏽 -
 `http://localhost4000/api/posts/like/:id`
 
-<img src="./src/img/like&dislikePosts.png" />
+<img src="./img/like&dislikePosts.png" />
 
 ---
 
@@ -535,11 +543,11 @@ We do that inserting MONGO_URI variables.
 
 `Users`
 
-<img src="./src/img/MongoCompasUsers.png"/>
+<img src="./img/MongoCompasUsers.png"/>
 
 `Post`
 
-<img src="./src/img/MongoCompasPost.png"/>
+<img src="./img/MongoCompasPost.png"/>
 
 ---
 
@@ -550,25 +558,25 @@ First to do deployment we need a cloud data base, we get this using Mongo DB clo
 We need register & log in `https://www.mongodb.com/es/cloud/atlas/register`
 </ol>
 
-<img src="./src/img/MongoAtlasRegister.png"/>
+<img src="./img/MongoAtlasRegister.png"/>
 
 Create a project, his name & key value.
 
-<img src="./src/img/CreateProjectMongoAtlas.png"/>
+<img src="./img/CreateProjectMongoAtlas.png"/>
 
 Choose IP connection (we use `0.0.0.0/0` to get access)
 
-<img src="./src/img/ConfigurationAtlasIP.png"/>
+<img src="./img/ConfigurationAtlasIP.png"/>
 
 Seed DataBase & check data
 
 `Users`
 
-<img src="./src/img/MongoAtlasUsers.png"/>
+<img src="./img/MongoAtlasUsers.png"/>
 
 `Post`
 
-<img src="./src/img/MongoAtlasPost.png"/>
+<img src="./img/MongoAtlasPost.png"/>
 
 ---
 
@@ -586,7 +594,7 @@ To do deployment of this project we use FL0.
 
 <li> Add Environment variables and deploy </li>
 
-<img src="./src/img/Fl0.png"/>
+<img src="./img/Fl0.png"/>
 
 <!-- The project is deplyed here: -->
 
