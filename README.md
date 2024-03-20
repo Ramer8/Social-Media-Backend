@@ -88,13 +88,25 @@ POST - User Login -
 
 <img src="./src/img/postUrl.png" />
 
+---
+
 #### USERS
+
+---
 
 GET - Show all Users (super_admin) -
 `http://localhost4000/api/users`
 
+<img src="./src/img/getAllUserSuperadmin.png" />
+
+---
+
 GET - Show User profile -
 `http://localhost4000/api/users/profile`
+
+<img src="./src/img/getUserProfile.png" />
+
+---
 
 PUT - Update User Profile (name) -
 `http://localhost4000/api/users/profile`
@@ -136,20 +148,30 @@ PUT - Update Post by id -
 GET - Retrieve own posts
 `http://localhost4000/api/posts/own`
 
+<img src="./src/img/getOwnPost.png" />
+
 ---
 
 GET - Retrieve all posts -
 `http://localhost4000/api/posts`
 
+<img src="./src/img/getAllUserPosts.png" />
+
 ---
 
-GET - Retrieve posts by id -
+GET - Retrieve posts by post id -
 `http://localhost4000/api/posts/:id`
 
-<img src="./src/img/getPostbyIdAnyUser.png" />
+<img src="./src/img/getPostByPostId.png" />
+
+---
 
 GET - Retrieve user posts -
 `http://localhost4000/api/users/posts/:user-id`
+
+<img src="./src/img/getPostUserIdUserPath.png" />
+
+---
 
 #### LIKES
 

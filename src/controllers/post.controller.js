@@ -190,7 +190,6 @@ export const getPostById = async (req, res) => {
 export const getAnyUserPost = async (req, res) => {
   try {
     const userId = req.params.id
-
     const getMyPost = await Post.find({
       userId: userId,
     })
