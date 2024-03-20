@@ -24,14 +24,12 @@ const UserSchema = new Schema(
       {
         type: Schema.Types.ObjectId,
         ref: "User",
-        default: [],
       },
     ],
     followers: [
       {
         type: Schema.Types.ObjectId,
         ref: "User",
-        default: [],
       },
     ],
     visibility: {
