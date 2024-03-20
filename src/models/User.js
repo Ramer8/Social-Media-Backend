@@ -14,13 +14,34 @@ const UserSchema = new Schema(
     password: {
       type: String,
       required: true,
-      //   minlength: 6,
-      //   maxlength: 10,
     },
     role: {
       type: String,
       enum: ["user", "admin", "super_admin"],
       default: "user",
+    },
+    following: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        default: [],
+      },
+    ],
+    followers: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        default: [],
+      },
+    ],
+    visibility: {
+      type: String,
+      enum: ["public", "private"],
+      default: "public",
+    },
+    is_active: {
+      type: Boolean,
+      default: true,
     },
   },
   {
