@@ -121,6 +121,10 @@ PUT - Update User Profile (name) -
 DELETE - Delete User (super_admin) -
 `http://localhost4000/api/users/:id`
 
+<img src="./src/img/deleteUserbyId.png" />
+
+---
+
 PUT - Update User Role (super_admin) -
 `http://localhost4000/api/users/fid}/role`
 
