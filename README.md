@@ -81,8 +81,12 @@ The User table fields are: name, email, password, role, following, and followers
 POST - User Register -
 `http://localhost4000/api/auth/register`
 
+<img src="./src/img/register.png" />
+
 POST - User Login -
 `http://localhost4000/api/auth/login`
+
+<img src="./src/img/postUrl.png" />
 
 #### USERS
 
@@ -106,23 +110,43 @@ PUT - Update User Role (super_admin) -
 
 #### POST
 
+---
+
 POST - Create post -
 `http://localhost4000/api/posts`
+
+<img src="./src/img/createdPost.png" />
+
+---
 
 DELETE - Delete post by id -
 `http://localhost4000/api/posts/:id`
 
-PUT -Update Post by id -
+<img src="./src/img/deletePost.png" />
+
+---
+
+PUT - Update Post by id -
 `http://localhost4000/api/posts`
+
+<img src="./src/img/updatePostById.png" />
+
+---
 
 GET - Retrieve own posts
 `http://localhost4000/api/posts/own`
 
+---
+
 GET - Retrieve all posts -
 `http://localhost4000/api/posts`
 
+---
+
 GET - Retrieve posts by id -
 `http://localhost4000/api/posts/:id`
+
+<img src="./src/img/getPostbyIdAnyUser.png" />
 
 GET - Retrieve user posts -
 `http://localhost4000/api/users/posts/:user-id`
