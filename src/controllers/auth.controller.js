@@ -79,7 +79,6 @@ export const login = async (req, res) => {
         message: "Email invalid",
       })
     }
-
     const isValidPassword = bcrypt.compareSync(password, user.password)
 
     if (!isValidPassword) {
@@ -91,7 +90,7 @@ export const login = async (req, res) => {
 
     const token = jwt.sign(
       {
-        name: user.name,
+        userName: user.name,
         email: user.email,
         userId: user._id,
         roleName: user.role,
