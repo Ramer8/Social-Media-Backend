@@ -164,9 +164,11 @@ export const getOwnPosts = async (req, res) => {
 
 export const getPosts = async (req, res) => {
   try {
-    const getUsersPost = await Post.find()
+    const getUsersPost = await Post.find().populate({
+      path: "userId",
+      select: "email name role",
+    })
     // get all post that's exist
-
     if (getUsersPost.length === 0) {
       return res.status(400).json({
         success: false,
