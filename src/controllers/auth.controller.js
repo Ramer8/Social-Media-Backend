@@ -87,7 +87,6 @@ export const login = async (req, res) => {
         message: "Email or password invalid",
       })
     }
-
     const token = jwt.sign(
       {
         userName: user.name,

@@ -29,11 +29,41 @@ export const createPost = async (req, res) => {
   }
 }
 
+export const deleteMoreThanOnePost = async (req, res) => {
+  try {
+    const { id } = req.params
+    const userId = req.tokenData.userId
+    console.log(id)
+    const getPost = await Post.findOne({
+      _id: id,
+      userId: userId,
+    })
+
+    if (!getPost) {
+      throw new Error("Not found post to delete")
+    }
+    const postToDelete = await Post.deleteOne({
+      _id: id,
+    })
+    res.status(201).json({
+      success: true,
+      message: "Post deleted succesfully",
+      postDeleted: getPost,
+      data: postToDelete,
+    })
+  } catch (error) {
+    if (error.message === "Not found post to delete") {
+      return handleError(res, error.message, 400)
+    }
+    handleError(res, "ERROR", 500)
+  }
+}
+
 export const deletePost = async (req, res) => {
   try {
     const { id } = req.params
     const userId = req.tokenData.userId
-
+    console.log(id)
     const getPost = await Post.findOne({
       _id: id,
       userId: userId,
@@ -221,8 +251,7 @@ export const putLikeAndDislike = async (req, res) => {
     const id = req.params.userId
     const getMyPost = await Post.findById({
       _id: id,
-    })
-
+    }).populate({ path: "userId", select: "email name " })
     if (!getMyPost) {
       throw new Error("Post not found")
     }
@@ -240,7 +269,7 @@ export const putLikeAndDislike = async (req, res) => {
 
     res.status(201).json({
       success: true,
-      message: "Post retrieved succesfully",
+      message: "Update like succesfully",
       data: getMyPost,
     })
   } catch (error) {
