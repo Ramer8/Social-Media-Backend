@@ -82,22 +82,25 @@ const postSeeder = async () => {
       {
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
         userId: new mongoose.Types.ObjectId("65eebde6af5c0f55427ff54e"),
-        likes: ["65eebde6af5c0f55427ff54e", "65ef99191cab165c23b93315"],
+        // likes: ["65eebde6af5c0f55427ff54e", "65ef99191cab165c23b93315"],
+        likes: [],
       },
       {
         content: "Praesent aliquam odio id nisi luctus bibendum",
         userId: new mongoose.Types.ObjectId("65eebde6af5c0f55427ff54f"),
+        likes: [],
       },
-      {
-        content:
-          "Aenean iaculis ex sed ligula congue, vitae sollicitudin leo elementum",
-        userId: new mongoose.Types.ObjectId("65eebde6af5c1f55427ff54f"),
-        likes: [
-          "65eebde6af5c0f55427ff54e",
-          "65ef99191cab165c23b93315",
-          "65eebde6af5c0f55427ff54f",
-        ],
-      },
+      // {
+      //   content:
+      //     "Aenean iaculis ex sed ligula congue, vitae sollicitudin leo elementum",
+      //   userId: new mongoose.Types.ObjectId("65ef99191cab165c23b93315"),
+      //   // likes: [
+      //   //   "65eebde6af5c0f55427ff54e",
+      //   //   "65ef99191cab165c23b93315",
+      //   //   "65eebde6af5c0f55427ff54f",
+      //   // ],
+      //   likes: [],
+      // },
       {
         content:
           "Morbi risus nisi, luctus congue tristique at, rhoncus eu nisi",
