@@ -7,8 +7,10 @@ import {
   getPosts,
   getPostById,
   putLikeAndDislike,
+  deleteMoreThanOnePost,
 } from "../controllers/post.controller.js"
 import { auth } from "../middlewares/auth.js"
+import { isSuperAdmin } from "../middlewares/isSuperAdmin.js"
 
 const router = Router()
 
@@ -17,6 +19,8 @@ const router = Router()
 router.post("/", auth, createPost)
 
 router.delete("/:id", auth, deletePost)
+
+router.delete("/", auth, isSuperAdmin, deleteMoreThanOnePost)
 
 router.put("/:id", auth, updatePost)
 

@@ -31,24 +31,32 @@ export const createPost = async (req, res) => {
 
 export const deleteMoreThanOnePost = async (req, res) => {
   try {
-    const { id } = req.params
-    const userId = req.tokenData.userId
-    console.log(id)
-    const getPost = await Post.findOne({
-      _id: id,
-      userId: userId,
+    const { postsId } = req.body
+
+    const postToDelete = await Post.find({
+      _id: { $in: postsId },
     })
 
-    if (!getPost) {
-      throw new Error("Not found post to delete")
+    if (!postToDelete.length) {
+      return res.status(404).json({
+        success: false,
+        message: "Post/s cannot be found in data base",
+      })
     }
-    const postToDelete = await Post.deleteOne({
-      _id: id,
+    const result = await Post.deleteMany({
+      _id: { $in: postsId },
     })
+
+    if (!result.deletedCount) {
+      return res.status(404).json({
+        success: false,
+        message: "Post/s not deleted",
+      })
+    }
     res.status(201).json({
       success: true,
       message: "Post deleted succesfully",
-      postDeleted: getPost,
+      deletedCount: result.deletedCount,
       data: postToDelete,
     })
   } catch (error) {

@@ -107,7 +107,6 @@ export const deleteMoreThanOneUser = async (req, res) => {
       _id: { $in: usersId },
       role: "user",
     })
-    console.log(!userToDelete.length)
     if (!userToDelete.length) {
       return res.status(501).json({
         success: false,
@@ -121,13 +120,11 @@ export const deleteMoreThanOneUser = async (req, res) => {
       role: "user",
     })
     // delete users thats his "_id" exist and his role is "user"
-    console.log(`post deleted:" ${result.deletedCount}`)
-    console.log(result)
 
     if (!result.deletedCount) {
       return res.status(404).json({
         success: false,
-        message: "User not deleted",
+        message: "User/s not deleted",
       })
     }
     res.status(201).json({
