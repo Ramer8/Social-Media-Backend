@@ -4,6 +4,7 @@ import {
   getProfile,
   updateProfile,
   deleteUser,
+  deleteMoreThanOneUser,
   // getUserByEmail,
 } from "../controllers/user.controller.js"
 
@@ -29,7 +30,9 @@ router.put("/profile", auth, updateProfile) // update profile
 
 router.get("/posts/:id", auth, getAnyUserPost) // Retrieve user post by id
 
-router.delete("/:id", auth, isSuperAdmin, deleteUser)
+router.delete("/:id", auth, isSuperAdmin, deleteUser) // delete one user
+
+router.delete("/", auth, isSuperAdmin, deleteMoreThanOneUser) // delete users from users id array
 
 // router.put("/:id/role", updateRoleById)
 

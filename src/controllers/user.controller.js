@@ -99,6 +99,51 @@ export const updateProfile = async (req, res) => {
 //   }
 // }
 
+export const deleteMoreThanOneUser = async (req, res) => {
+  try {
+    const { usersId } = req.body
+
+    const userToDelete = await User.find({
+      _id: { $in: usersId },
+      role: "user",
+    })
+    console.log(!userToDelete.length)
+    if (!userToDelete.length) {
+      return res.status(501).json({
+        success: false,
+        message: "User/s cannot be removed",
+      })
+    }
+    //To delete use the same filter to fetch only users that his role = "user".
+
+    const result = await User.deleteMany({
+      _id: { $in: usersId },
+      role: "user",
+    })
+    // delete users thats his "_id" exist and his role is "user"
+    console.log(`post deleted:" ${result.deletedCount}`)
+    console.log(result)
+
+    if (!result.deletedCount) {
+      return res.status(404).json({
+        success: false,
+        message: "User not deleted",
+      })
+    }
+    res.status(201).json({
+      success: true,
+      message: "User deleted succesfully",
+      deletedCount: result.deletedCount,
+      data: userToDelete,
+    })
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "User can't deleted",
+      error: error,
+    })
+  }
+}
 export const deleteUser = async (req, res) => {
   try {
     const idToDelete = req.params.id
