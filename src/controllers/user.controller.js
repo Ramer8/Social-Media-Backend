@@ -71,33 +71,27 @@ export const updateProfile = async (req, res) => {
   }
 }
 
-// export const getUserByEmail = async (req, res) => {
-//   try {
-//     const email = req.query.email
+export const getUserByEmail = async (req, res) => {
+  try {
+    const { email } = req.query
 
-//     let queryList = {}
+    const regex = new RegExp(email, "i")
 
-//     if (req.query.email) {
-//       queryList.email = req.query.email
-//     }
+    const showUser = await User.find({ email: regex }).select("-password")
 
-//     const fetchedEmail = await User.find(queryList)
-
-//     console.log(fetchedEmail)
-
-//     res.status(201).json({
-//       success: true,
-//       message: "Email founded succesfully",
-//       // data: fetchedEmail,
-//     })
-//   } catch (error) {
-//     res.status(500).json({
-//       success: false,
-//       message: "Email can't update",
-//       error: error,
-//     })
-//   }
-// }
+    res.status(201).json({
+      success: true,
+      message: "Email founded succesfully",
+      data: showUser,
+    })
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Email can't founded",
+      error: error,
+    })
+  }
+}
 
 export const deleteMoreThanOneUser = async (req, res) => {
   try {

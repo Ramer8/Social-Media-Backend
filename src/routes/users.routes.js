@@ -5,7 +5,7 @@ import {
   updateProfile,
   deleteUser,
   deleteMoreThanOneUser,
-  // getUserByEmail,
+  getUserByEmail,
 } from "../controllers/user.controller.js"
 
 import { getAnyUserPost } from "../controllers/post.controller.js"
@@ -18,7 +18,7 @@ const router = Router()
 
 // route => localhost:4000/api/users
 
-// router.get("", getUserByEmail) // must put before getUsers cause have the same path.
+router.get("", getUserByEmail) // must put before getUsers cause have the same path.
 
 // get profile
 

@@ -172,10 +172,12 @@ export const getOwnPosts = async (req, res) => {
 
 export const getPosts = async (req, res) => {
   try {
-    const getUsersPost = await Post.find().populate({
-      path: "userId",
-      select: "email name role",
-    })
+    const getUsersPost = await Post.find()
+      .populate({
+        path: "userId",
+        select: "email name role",
+      })
+      .sort({ createdAt: -1 })
     // get all post that's exist
     if (getUsersPost.length === 0) {
       return res.status(400).json({
@@ -261,7 +263,7 @@ export const putLikeAndDislike = async (req, res) => {
     const id = req.params.userId
     const getMyPost = await Post.findById({
       _id: id,
-    }).populate({ path: "userId", select: "email name " })
+    }).populate({ path: "userId", select: "email name" })
     if (!getMyPost) {
       throw new Error("Post not found")
     }
