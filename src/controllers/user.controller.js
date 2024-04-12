@@ -3,7 +3,6 @@ import User from "../models/User.js"
 export const getUsers = async (req, res) => {
   try {
     const showUser = await User.find().select("-password")
-
     res.status(201).json({
       success: true,
       message: "Users retrieved succesfully",
@@ -24,7 +23,6 @@ export const getProfile = async (req, res) => {
     const showProfile = await User.findById({
       _id: userId,
     }).select("-password")
-
     // .select("-password, -role") //avoid two key/value
 
     res.status(201).json({
@@ -71,17 +69,35 @@ export const updateProfile = async (req, res) => {
   }
 }
 
-export const getUserByEmail = async (req, res) => {
+export const getUserByEmailOrName = async (req, res) => {
   try {
-    const { email } = req.query
+    //
+    const { email, name } = req.query // Retrieve email and name from query parameters
 
-    const regex = new RegExp(email, "i")
+    // Build the query object based on provided email and name
+    const query = {}
 
-    const showUser = await User.find({ email: regex }).select("-password")
+    if (email) {
+      // If email is provided, add it to the query object
+      query.email = new RegExp(email, "i") // Case-insensitive partial matching for email
+    }
+
+    if (name) {
+      // If name is provided, add it to the query object
+      query.name = new RegExp(name, "i") // Case-insensitive partial matching for name
+    }
+    const showUser = await User.find(query).select("-password")
+    if (showUser == "") {
+      return res.status(404).json({
+        success: false,
+        message: "User/s not found",
+      })
+    }
 
     res.status(201).json({
       success: true,
-      message: "Email founded succesfully",
+      message: "Search founded succesfully",
+      //  `${ query.email ? "Email founded succesfully" : "Name founded succesfully"  }`,
       data: showUser,
     })
   } catch (error) {
