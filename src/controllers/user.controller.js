@@ -1,4 +1,5 @@
 import User from "../models/User.js"
+import Post from "../models/Post.js"
 
 export const getUsers = async (req, res) => {
   try {
@@ -117,6 +118,11 @@ export const deleteMoreThanOneUser = async (req, res) => {
       _id: { $in: usersId },
       role: "user",
     })
+
+    const postByUserToDelete = await Post.find({
+      userId: { $in: usersId },
+    })
+
     if (!userToDelete.length) {
       return res.status(501).json({
         success: false,
@@ -125,11 +131,14 @@ export const deleteMoreThanOneUser = async (req, res) => {
     }
     //To delete use the same filter to fetch only users that his role = "user".
 
+    const postResult = await Post.deleteMany({
+      userId: { $in: usersId },
+    })
     const result = await User.deleteMany({
       _id: { $in: usersId },
       role: "user",
     })
-    // delete users thats his "_id" exist and his role is "user"
+    // // delete users thats his "_id" exist and his role is "user"
 
     if (!result.deletedCount) {
       return res.status(404).json({
@@ -140,7 +149,8 @@ export const deleteMoreThanOneUser = async (req, res) => {
     res.status(201).json({
       success: true,
       message: "User deleted succesfully",
-      deletedCount: result.deletedCount,
+      deletedCountUser: result.deletedCount,
+      deletedCountPost: postResult.deletedCount,
       data: userToDelete,
     })
   } catch (error) {
