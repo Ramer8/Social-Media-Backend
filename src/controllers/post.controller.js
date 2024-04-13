@@ -71,14 +71,15 @@ export const deletePost = async (req, res) => {
   try {
     const { id } = req.params
     const userId = req.tokenData.userId
-    console.log(id)
+
     const getPost = await Post.findOne({
       _id: id,
       userId: userId,
     })
 
     if (!getPost) {
-      throw new Error("Not found post to delete")
+      console.log("this post not belong to you")
+      throw new Error("Not found post to delete or this post not belong to you")
     }
     const postToDelete = await Post.deleteOne({
       _id: id,
@@ -102,12 +103,25 @@ export const updatePost = async (req, res) => {
     const { content } = req.body
     const { id } = req.params
     const userId = req.tokenData.userId
+    console.log("---------STARTING!!!!!!!!-------------")
+
+    console.log(content, "lo enviado a modif")
+    console.log("----------xxxxxxxxxxxxxxxxxx------------")
+
+    console.log(id, "el post a modif")
 
     const postToUpdate = await Post.findOne({
       _id: id,
       userId: userId,
     })
-
+    console.log("---------xx------------")
+    if (!postToUpdate) {
+      return res.status(400).json({
+        success: false,
+        message: "Not found post to update or this post not belong to you",
+      })
+    }
+    console.log(postToUpdate, "el que quiero actualizar..")
     if (!postToUpdate) {
       return res.status(400).json({
         success: false,
@@ -126,6 +140,8 @@ export const updatePost = async (req, res) => {
         new: true,
       }
     )
+    console.log("----------------------")
+    console.log(updatePost, "el actualizado!")
 
     res.status(201).json({
       success: true,

@@ -96,14 +96,14 @@ export const getUserByEmailOrName = async (req, res) => {
 
     res.status(201).json({
       success: true,
-      message: "Search founded succesfully",
+      message: "User founded succesfully",
       //  `${ query.email ? "Email founded succesfully" : "Name founded succesfully"  }`,
       data: showUser,
     })
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "Email can't founded",
+      message: "User can't founded",
       error: error,
     })
   }
