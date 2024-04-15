@@ -42,7 +42,7 @@ export const getProfile = async (req, res) => {
 export const updateProfile = async (req, res) => {
   try {
     const userId = req.tokenData.userId
-    const name = req.body.name
+    const { name, gender, birthday, address, phone, bio } = req.body
 
     const updatedProfile = await User.findOneAndUpdate(
       {
@@ -50,6 +50,11 @@ export const updateProfile = async (req, res) => {
       },
       {
         name: name,
+        gender: gender,
+        birthday: birthday,
+        address: address,
+        phone: phone,
+        bio: bio,
       },
       {
         new: true,

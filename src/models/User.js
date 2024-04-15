@@ -6,6 +6,26 @@ const UserSchema = new Schema(
       type: String,
       required: false,
     },
+    gender: {
+      type: String,
+      required: false,
+    },
+    birthday: {
+      type: Date,
+      required: false,
+    },
+    address: {
+      type: String,
+      required: false,
+    },
+    phone: {
+      type: Number,
+      required: false,
+    },
+    bio: {
+      type: String,
+      required: false,
+    },
     email: {
       type: String,
       required: true,
