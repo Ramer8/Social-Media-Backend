@@ -139,6 +139,7 @@ export const deleteMoreThanOneUser = async (req, res) => {
     const postResult = await Post.deleteMany({
       userId: { $in: usersId },
     })
+
     const result = await User.deleteMany({
       _id: { $in: usersId },
       role: "user",

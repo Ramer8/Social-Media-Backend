@@ -33,9 +33,7 @@ export const deleteMoreThanOnePost = async (req, res) => {
   try {
     const { postsId } = req.body
 
-    const postToDelete = await Post.find({
-      _id: { $in: postsId },
-    })
+    const postToDelete = await Post.find({ _id: { $in: postsId } })
 
     if (!postToDelete.length) {
       return res.status(404).json({
