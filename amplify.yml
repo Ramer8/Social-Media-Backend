@@ -1,0 +1,36 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm install
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: dist # Ensure 'dist' is the correct output directory for your frontend build, if applicable
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - node_modules/**/*
+backend:
+  phases:
+    preBuild:
+      commands:
+        - npm install
+        - cp .env.example .env # Assuming you have a .env.example file as a template for environment variables
+    build:
+      commands:
+        - npm run build # Adjust according to your actual build script if necessary
+  # artifacts:
+  #   baseDirectory: dist # Ensure 'dist' is the correct output directory for your backend build, if applicable
+  #   files:
+  #     - "**/*"
+  cache:
+    paths:
+      - node_modules/**/*
+  env:
+    variables:
+      MONGO_URI: mongodb+srv://ramirolpoblete:beni2017@cluster0.fmaxf9e.mongodb.net/
+      JWT_SECRET: secreto
